@@ -3,9 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-09-2024 a las 17:34:01
+-- Tiempo de generación: 08-10-2024 a las 22:51:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
+
+USE netflix;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +48,6 @@ INSERT INTO `peliculas` (`id_peliculas`, `Nombre_pelicula`, `Lanzamiento`, `dire
 (2, 'One day', '2011-08-08', 'Lone Scherfig', 'Ingles', 'cine romantico ', 1),
 (7, 'Duro de matar 1', '1988-12-15', 'John MCTiernan', 'Ingles', 'Accion', 3),
 (9, 'Scary Movie', '2000-10-26', 'Kennen ivory Wayans', 'Ingles', 'Comedia', 4),
-(10, 'El Exorcista', '1974-08-15', 'Wiliams Friedkin', 'Ingles', 'Terror', 5),
 (17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5);
 
 -- --------------------------------------------------------
