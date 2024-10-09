@@ -1,7 +1,7 @@
 <?php
 
 class FilmsView {
-    
+
     public function showFilms($films) {
 
         // La vista define una nueva variable con la cantidad de peliculas.
@@ -10,5 +10,9 @@ class FilmsView {
         // Template accedera a todas las variables y constantes--
         // que tiene alcance esta funcion
         require 'Templates/list_films.phtml';
+    }
+
+    public function showError($error) {
+        require 'Templates/error.phtml';
     }
 }

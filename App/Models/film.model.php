@@ -20,4 +20,15 @@ class FilmsModel {
 
         return $films;
     }
+
+    public function insertFilm($name_film, $date, $director, $genre, $language) {
+        $query = $this->db->prepare('INSERT INTO peliculas(Nombre_pelicula, Lanzamiento, director, genero, Idioma) VALUES (?, ?, ?, ?, ?)');
+        $query->execute([$name_film, $date, $director, $genre, $language]);
+
+        // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
+
+        $id = $this->db->lastInsertId();
+
+        return $id;
+    }
 }

@@ -14,10 +14,18 @@ if (!empty( $_GET['action'])) {
 
 $params = explode('/', $action);
 
+// PD: Hagamos las url semanticas en Español, Asi queda mas lindo
+// ej TPE-WEB/pelicuas
+
 switch ($params[0]) {
     case 'peliculas':
         $controller = new FilmsController();
         $controller->showFilms();
+        break;
+    
+    case 'nueva':
+        $controller = new FilmsController();
+        $controller->addFilm();
         break;
 
     default:

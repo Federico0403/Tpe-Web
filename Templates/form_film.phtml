@@ -1,0 +1,49 @@
+
+<!-- 
+el action = "nueva" se usa dsp para llamarlo desde el router, haciendo
+un nuevo case para el mismo
+
+PDD: la url semantica si la aremos en español
+-->
+
+
+<!--
+El formulario debe tener:
+    - Nombre_pelicula *
+    - Lanzamiento *
+    - director *
+    - Idioma *
+    - genero * 
+    - id_productoras (nose como plantear lo de productoras, hacer con agos)
+-->
+<form action="nueva" method="POST">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre de la Pelicula</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="name_film">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Lanzamiento</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1" name="date">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Director</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="director">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Genero</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="genre">
+    </div>
+    <div class="col-3">
+            <div class="form-group">
+                <label>Idioma</label>
+                <select required name="language" class="form-control">
+                    <option value="1">Ingles</option>
+                    <option value="2">Español</option>
+                    <option value="3">Frances</option>
+                    <option value="4">Portuges</option>
+                </select>
+            </div>
+        </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+</form>

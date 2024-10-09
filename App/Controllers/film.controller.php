@@ -22,5 +22,34 @@ class FilmsController {
         // Agrega esto para ver si se obtienen películas.
         return $this->view->showFilms($films);
     }
+
+    public function addFilm() {
+        if (!isset($_POST['name_film']) || empty($_POST['name_film'])){
+            return $this->view->showError('Falta completar el nombre de la Pelicula');
+        }
+        if (!isset($_POST['date']) || empty($_POST['date'])){
+            return $this->view->showError('Falta completar la fecha de estreno');
+        }
+        if (!isset($_POST['director']) || empty($_POST['director'])){
+            return $this->view->showError('Falta completar el nombre del director');
+        }
+        if (!isset($_POST['genre']) || empty($_POST['genre'])){
+            return $this->view->showError('Falta completar el genero de la pelicula');
+        }
+        if (!isset($_POST['language']) || empty($_POST['language'])){
+            return $this->view->showError('Falta completar idioma de la pelicula');
+        }
+
+        $name_film = $_POST['name_film'];
+        $date = $_POST['date'];
+        $director = $_POST['director'];
+        $genre = $_POST['genre'];
+        $languague = $_POST['language'];
+
+        $id = $this->model->insertFilm($name_film, $date, $director, $genre, $languague);
+
+        // Redirijo al home
+        header('location: ' . BASE_URL);
+    }
     
 }
