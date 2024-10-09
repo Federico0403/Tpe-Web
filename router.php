@@ -27,6 +27,11 @@ switch ($params[0]) {
         $controller = new FilmsController();
         $controller->addFilm();
         break;
+    
+    case 'eliminar':
+        $controller = new FilmsController();
+        $controller->deleteFilm($params[1]);
+        break;
 
     default:
         echo "404 Page Not Found";

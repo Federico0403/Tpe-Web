@@ -27,8 +27,13 @@ class FilmsModel {
 
         // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
 
-        $id = $this->db->lastInsertId();
+        $id_peliculas = $this->db->lastInsertId();
 
-        return $id;
+        return $id_peliculas;
+    }
+
+    public function cleanFilm($id_peliculas) {
+        $query = $this->db->prepare('DELETE FROM peliculas WHERE id_peliculas = ?');
+        $query->execute([$id_peliculas]);
     }
 }

@@ -46,10 +46,24 @@ class FilmsController {
         $genre = $_POST['genre'];
         $languague = $_POST['language'];
 
-        $id = $this->model->insertFilm($name_film, $date, $director, $genre, $languague);
+        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $languague);
 
         // Redirijo al home
         header('location: ' . BASE_URL);
+    }
+
+    public function deleteFilm($id_peliculas) {
+        // Obtengo la pelicula especifica por id
+        $films = $this->model->getFilms($id_peliculas);
+
+        if(!$films) {
+            return $this->view->showError("No existe la pelicula con el id = $id_peliculas");
+        }
+
+        // Borro y redirijo
+        $this->model->cleanFilm($id_peliculas);
+
+        header('Location: ' . BASE_URL);
     }
     
 }
