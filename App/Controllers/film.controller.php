@@ -20,7 +20,6 @@ class FilmsController {
 
         $films = $this->model->getFilms();
         // Agrega esto para ver si se obtienen películas.
-        var_dump($films); 
         return $this->view->showFilms($films);
     }
     

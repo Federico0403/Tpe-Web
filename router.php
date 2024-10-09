@@ -1,11 +1,10 @@
 <?php
 
-require_once 'App/Controllers/film.controller.php';
+require_once './App/Controllers/film.controller.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-// para lo de loguearse
-$res = new Response();
+
 
 $action = 'peliculas'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {

@@ -1,11 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
+
+    # Si el archivo o directorio solicitado no existe, pasa la solicitud a router.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
-   
+    # Permitir que archivos CSS, JS, imágenes, etc. se carguen normalmente
     RewriteRule \.(?:css|js|jpe?g|gif|png)$ - [L]
 
-    RewriteRule ^tabla/([0-9]+)$ router.php?action=$1 [QSA,L]
+    # Reescribe las URL de todo lo que no sea archivo o directorio hacia router.php
+    RewriteRule ^(.*)$ router.php?action=$1 [QSA,L]
 </IfModule>

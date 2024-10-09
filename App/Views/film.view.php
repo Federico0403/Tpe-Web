@@ -1,7 +1,7 @@
 <?php
 
 class FilmsView {
-
+    
     public function showFilms($films) {
 
         // La vista define una nueva variable con la cantidad de peliculas.
