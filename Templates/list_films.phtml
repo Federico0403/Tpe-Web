@@ -26,6 +26,7 @@
                         <p><?= htmlspecialchars($film->genero) ?></p>
                     </div>
                     <a href="eliminar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a>
+                    <a href="editar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Actualizar</a>
                 </div>
             </li>
         <?php endforeach ?>

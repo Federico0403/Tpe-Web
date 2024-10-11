@@ -33,6 +33,11 @@ switch ($params[0]) {
         $controller->deleteFilm($params[1]);
         break;
 
+    case 'editar':
+        $controller = new FilmsController();
+        $controller->editFilm($params[1]);
+        break;
+
     default:
         echo "404 Page Not Found";
         break;

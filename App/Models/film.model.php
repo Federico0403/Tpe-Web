@@ -36,4 +36,12 @@ class FilmsModel {
         $query = $this->db->prepare('DELETE FROM peliculas WHERE id_peliculas = ?');
         $query->execute([$id_peliculas]);
     }
+
+    public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language) {
+        // Actualizo los datos de la película en la base de datos
+        $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ? WHERE id_peliculas = ?');
+        $query->execute([$name_film, $date, $director, $genre, $language, $id_peliculas]);
+    }
+    
+
 }

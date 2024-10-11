@@ -65,5 +65,38 @@ class FilmsController {
 
         header('Location: ' . BASE_URL);
     }
+
+    public function editFilm($id_peliculas) {
+        // Obtengo la película específica por id
+        $films = $this->model->getFilms($id_peliculas);
+    
+        if (!$films) {
+            return $this->view->showError("No existe película con el id = $id_peliculas");
+        }
+    
+        // Compruebo si se envió el formulario de edición
+        if (!isset($_POST['name_film']) || empty($_POST['name_film']) ||
+            !isset($_POST['date']) || empty($_POST['date']) ||
+            !isset($_POST['director']) || empty($_POST['director']) ||
+            !isset($_POST['genre']) || empty($_POST['genre']) ||
+            !isset($_POST['language']) || empty($_POST['language'])) {
+    
+            return $this->view->showError('Faltan completar campos obligatorios');
+        }
+    
+        // Obtengo los datos del formulario
+        $name_film = $_POST['name_film'];
+        $date = $_POST['date'];
+        $director = $_POST['director'];
+        $genre = $_POST['genre'];
+        $language = $_POST['language'];
+    
+        // Llamo al modelo para actualizar los datos
+        $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language);
+    
+        // Redirijo al home
+        header('Location: ' . BASE_URL);
+    }
+    
     
 }
