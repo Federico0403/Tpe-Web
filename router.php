@@ -38,10 +38,18 @@ switch ($params[0]) {
         $controller = new FilmsController();
         $controller->editFilm($params[1]);
         break;
+        
+    // Nuevo caso para mostrar detalles de la película
+    case 'film':
+        $controller = new FilmsController();
+        $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
+        break;
+    
     case 'producer':
         $controller = new producerController();
         $controller->showProducer();
         break;
+    
     default:
         echo "404 Page Not Found";
         break;

@@ -2,10 +2,14 @@
 // Aqui las carpetas ajenas a esta, la cual usaremos sus archivos.
 require_once './App/Models/film.model.php';
 require_once './App/Views/film.view.php';
+require_once './App/Models/producer.model.php';
+
 
 class FilmsController {
     private $model;
     private $view;
+    private $producerModel;
+
 
     // Constructor para inicializar el modelo y la vista
     public function __construct() {
@@ -14,7 +18,19 @@ class FilmsController {
 
         // Instancio la vista de películas 
         $this->view = new FilmsView();
+
+        // Instancio el modelo de productoras
+        $this->producerModel = new producerModel(); // Asegúrate de que el nombre sea correcto
+
     }
+
+    public function showAddFilmForm() {
+        // Obtengo las productoras del modelo
+        $producers = $this->producerModel->getProducer(); // Llama al método de productoras
+
+        // Incluye el archivo del formulario
+        require 'Templates/form_film.phtml'; // Asegúrate de que este archivo tiene tu formulario
+    }    
 
     public function showFilms() {
 
@@ -39,14 +55,18 @@ class FilmsController {
         if (!isset($_POST['language']) || empty($_POST['language'])){
             return $this->view->showError('Falta completar idioma de la pelicula');
         }
+        if (!isset($_POST['id_productoras']) || empty($_POST['id_productoras'])) {
+            return $this->view->showError('Falta seleccionar una productora');
+        }
 
         $name_film = $_POST['name_film'];
         $date = $_POST['date'];
         $director = $_POST['director'];
         $genre = $_POST['genre'];
-        $languague = $_POST['language'];
+        $language = $_POST['language'];
+        $id_productoras = $_POST['id_productoras'];
 
-        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $languague);
+        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras);
 
         // Redirijo al home
         header('location: ' . BASE_URL);
@@ -97,6 +117,19 @@ class FilmsController {
         // Redirijo al home
         header('Location: ' . BASE_URL);
     }
+
+    public function showFilmDetails($id_peliculas) {
+        // Obtengo la película específica por ID
+        $film = $this->model->getFilmById($id_peliculas);
+    
+        if (!$film) {
+            return $this->view->showError("No existe película con el id = $id_peliculas");
+        }
+    
+        // Muestra la vista con los detalles de la película
+        require 'Templates/film_details.phtml'; // Asegúrate de crear este archivo
+    }
+    
     
     
 }

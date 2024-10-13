@@ -21,9 +21,9 @@ class FilmsModel {
         return $films;
     }
 
-    public function insertFilm($name_film, $date, $director, $genre, $language) {
-        $query = $this->db->prepare('INSERT INTO peliculas(Nombre_pelicula, Lanzamiento, director, genero, Idioma) VALUES (?, ?, ?, ?, ?)');
-        $query->execute([$name_film, $date, $director, $genre, $language]);
+    public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras) {
+        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productoras) VALUES (?, ?, ?, ?, ?, ?)');
+        $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras]);
 
         // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
 
@@ -42,6 +42,14 @@ class FilmsModel {
         $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ? WHERE id_peliculas = ?');
         $query->execute([$name_film, $date, $director, $genre, $language, $id_peliculas]);
     }
+
+    public function getFilmById($id_peliculas) {
+        $query = $this->db->prepare('SELECT * FROM peliculas WHERE id_peliculas = ?');
+        $query->execute([$id_peliculas]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+    
     
 
 }

@@ -43,7 +43,17 @@ El formulario debe tener:
                     <option value="4">Portuges</option>
                 </select>
             </div>
-        </div>
+    </div>
+    <div class="mb-3">
+        <label for="producerSelect" class="form-label">Productora</label>
+        <select required name="id_productoras" class="form-control" id="producerSelect">
+            <?php foreach ($producers as $producer): ?>
+                <option value="<?= $producer->id_productoras; ?>"><?= $producer->nombre_productora; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+
 
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>
 </form>

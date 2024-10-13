@@ -1,0 +1,11 @@
+<?php require 'Templates/Layout/header.phtml'; ?>
+
+<div class="container mt-4">
+    <h1><?= htmlspecialchars($film->Nombre_pelicula) ?></h1>
+    <p><strong>Director:</strong> <?= htmlspecialchars($film->director) ?></p>
+    <p><strong>Género:</strong> <?= htmlspecialchars($film->genero) ?></p>
+    <p><strong>Idioma:</strong> <?= htmlspecialchars($film->Idioma) ?></p>
+    <p><strong>Lanzamiento:</strong> <?= date("d/m/Y", strtotime($film->Lanzamiento)) ?></p>
+</div>
+
+<?php require 'Templates/Layout/footer.phtml'; ?>
