@@ -6,7 +6,7 @@ require_once './App/Controllers/film.controller.php';
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
-$action = 'peliculas'; // accion por defecto si no se envia ninguna
+$action = 'films'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
@@ -18,7 +18,7 @@ $params = explode('/', $action);
 // ej TPE-WEB/pelicuas
 
 switch ($params[0]) {
-    case 'peliculas':
+    case 'films':
         $controller = new FilmsController();
         $controller->showFilms();
         break;

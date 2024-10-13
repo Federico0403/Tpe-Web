@@ -12,14 +12,14 @@ class FilmsController {
         // Instancio el modelo de películas
         $this->model = new FilmsModel();
 
-        // Instancio la vista de películas (asegúrate de que la clase exista)
+        // Instancio la vista de películas 
         $this->view = new FilmsView();
     }
 
     public function showFilms() {
 
         $films = $this->model->getFilms();
-        // Agrega esto para ver si se obtienen películas.
+       
         return $this->view->showFilms($films);
     }
 
