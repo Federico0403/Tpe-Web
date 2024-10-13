@@ -1,6 +1,7 @@
 <?php
 
 require_once './App/Controllers/film.controller.php';
+require_once './App/Controllers/producer.controller.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -37,7 +38,10 @@ switch ($params[0]) {
         $controller = new FilmsController();
         $controller->editFilm($params[1]);
         break;
-
+    case 'producer':
+        $controller = new producerController();
+        $controller->showProducer();
+        break;
     default:
         echo "404 Page Not Found";
         break;
