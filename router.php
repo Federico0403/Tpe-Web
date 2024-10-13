@@ -7,7 +7,7 @@ require_once './App/Controllers/producer.controller.php';
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
-$action = 'films'; // accion por defecto si no se envia ninguna
+$action = 'inicio'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
@@ -19,7 +19,12 @@ $params = explode('/', $action);
 // ej TPE-WEB/pelicuas
 
 switch ($params[0]) {
-    case 'films':
+    case 'inicio':
+        $controller = new FilmsController();
+        $controller->showHome();
+        break;
+
+    case 'agregar':
         $controller = new FilmsController();
         $controller->showFilms();
         break;
@@ -45,7 +50,7 @@ switch ($params[0]) {
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
     
-    case 'producer':
+    case 'productor':
         $controller = new producerController();
         $controller->showProducer();
         break;

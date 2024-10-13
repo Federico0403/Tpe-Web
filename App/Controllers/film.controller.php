@@ -39,6 +39,12 @@ class FilmsController {
         return $this->view->showFilms($films);
     }
 
+    public function showHome() {
+        $films = $this->model->getFilms();
+       
+        return $this->view->showHome($films);
+    }
+
     public function addFilm() {
         if (!isset($_POST['name_film']) || empty($_POST['name_film'])){
             return $this->view->showError('Falta completar el nombre de la Pelicula');
@@ -121,10 +127,6 @@ class FilmsController {
     public function showFilmDetails($id_peliculas) {
         // Obtengo la película específica por ID
         $film = $this->model->getFilmById($id_peliculas);
-    
-        if (!$film) {
-            return $this->view->showError("No existe película con el id = $id_peliculas");
-        }
     
         // Muestra la vista con los detalles de la película
         require 'Templates/film_details.phtml'; // Asegúrate de crear este archivo

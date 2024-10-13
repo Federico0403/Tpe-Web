@@ -13,4 +13,8 @@ class FilmsView {
     public function showError($error) {
         require 'Templates/error.phtml';
     }
+
+    public function showHome($films) {
+        require 'Templates/home_films.phtml';
+    }
 }
