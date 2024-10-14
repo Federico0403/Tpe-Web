@@ -20,15 +20,16 @@ class FilmsController {
         $this->view = new FilmsView();
 
         // Instancio el modelo de productoras
-        $this->producerModel = new producerModel(); // Asegúrate de que el nombre sea correcto
+        $this->producerModel = new producerModel(); 
 
     }
     
     public function showFilms() {
         $films = $this->model->getFilms();
-        $producers = $this->producerModel->getProducer(); // Obtener productoras
-    
-        return $this->view->showFilms($films, $producers); // Pasar ambos a la vista
+        // Obtengo las productoras
+        $producers = $this->producerModel->getProducer(); 
+        // las paso a la vista
+        return $this->view->showFilms($films, $producers); 
     }
     
 
@@ -58,23 +59,22 @@ class FilmsController {
         if (empty($_POST['id_productoras'])) {
             return $this->view->showError('Falta seleccionar una productora');
         }
+        
+        // Obtengo los datos del formulario
+        $name_film = $_POST['name_film'];
+        $date = $_POST['date'];
+        $director = $_POST['director'];
+        $genre = $_POST['genre'];
+        $language = $_POST['language'];
+        $id_productoras = $_POST['id_productoras']; 
     
-        // Sanitizar y asignar variables
-        $name_film = htmlspecialchars(trim($_POST['name_film']));
-        $date = htmlspecialchars(trim($_POST['date']));
-        $director = htmlspecialchars(trim($_POST['director']));
-        $genre = htmlspecialchars(trim($_POST['genre']));
-        $language = htmlspecialchars(trim($_POST['language']));
-        $id_productoras = (int)$_POST['id_productoras']; // Convertir a entero para evitar inyecciones
-    
-        // Intentar insertar la película
+        // Intento la pelicula
         $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras);
     
         // Verificar si la inserción fue exitosa
         if ($id_peliculas) {
             // Redirigir al home
             header('Location: ' . BASE_URL);
-            exit(); // Asegurarse de que el script se detenga después de la redirección
         } else {
             return $this->view->showError('Error al agregar la película. Por favor, inténtelo de nuevo.');
         }
