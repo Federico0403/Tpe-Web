@@ -6,6 +6,7 @@
     <p><strong>Género:</strong> <?= htmlspecialchars($film->genero) ?></p>
     <p><strong>Idioma:</strong> <?= htmlspecialchars($film->Idioma) ?></p>
     <p><strong>Lanzamiento:</strong> <?= date("d/m/Y", strtotime($film->Lanzamiento)) ?></p>
+    <p><strong>Productora:</strong> <?= htmlspecialchars($film->Nombre_productora) ?></p> <!-- Agregado aquí -->
 </div>
 
 <?php require 'Templates/Layout/footer.phtml'; ?>

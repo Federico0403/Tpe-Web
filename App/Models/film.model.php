@@ -44,9 +44,10 @@ class FilmsModel {
     }
 
     public function getFilmById($id_peliculas) {
-        $query = $this->db->prepare('SELECT * FROM peliculas WHERE id_peliculas = ?');
+        // Aquí se une a la tabla de productoras para obtener el nombre de la productora
+        $query = $this->db->prepare('SELECT p.*, pr.Nombre_productora FROM peliculas p JOIN productoras pr ON p.id_productoras = pr.id_productoras WHERE p.id_peliculas = ?');
         $query->execute([$id_peliculas]);
-        
+    
         return $query->fetch(PDO::FETCH_OBJ);
     }
     
