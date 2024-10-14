@@ -1,12 +1,16 @@
 <?php require 'Templates/Layout/header.phtml'; ?>
 
 <div class="container mt-4">
-    <h1><?= htmlspecialchars($film->Nombre_pelicula) ?></h1>
-    <p><strong>Director:</strong> <?= htmlspecialchars($film->director) ?></p>
-    <p><strong>Género:</strong> <?= htmlspecialchars($film->genero) ?></p>
-    <p><strong>Idioma:</strong> <?= htmlspecialchars($film->Idioma) ?></p>
-    <p><strong>Lanzamiento:</strong> <?= date("d/m/Y", strtotime($film->Lanzamiento)) ?></p>
-    <p><strong>Productora:</strong> <?= htmlspecialchars($film->Nombre_productora) ?></p> <!-- Agregado aquí -->
+    <h1 class="mb-4"><?= htmlspecialchars($film->Nombre_pelicula) ?></h1>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>Director:</strong> <?= htmlspecialchars($film->director) ?></p>
+            <p class="card-text"><strong>Género:</strong> <?= htmlspecialchars($film->genero) ?></p>
+            <p class="card-text"><strong>Idioma:</strong> <?= htmlspecialchars($film->Idioma) ?></p>
+            <p class="card-text"><strong>Lanzamiento:</strong> <?= date("d/m/Y", strtotime($film->Lanzamiento)) ?></p>
+            <p class="card-text"><strong>Productora:</strong> <?= htmlspecialchars($film->Nombre_productora) ?></p> <!-- Agregado aquí -->
+        </div>
+    </div>
 </div>
 
 <?php require 'Templates/Layout/footer.phtml'; ?>

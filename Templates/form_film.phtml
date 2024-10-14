@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Películas</title>
+    <!-- Enlazar Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
+<div class="container mt-5">
+    <h1 class="text-center">Agregar Nueva Película</h1>
+    
     <!-- Formulario para agregar una nueva película -->
     <form action="nueva" method="POST">
-        <div class="mb-3">
-            <label for="nameFilm" class="form-label">Nombre de la Película *</label>
+        <div class="form-group">
+            <label for="nameFilm">Nombre de la Película *</label>
             <input type="text" class="form-control" id="nameFilm" name="name_film" required>
         </div>
-        <div class="mb-3">
-            <label for="releaseDate" class="form-label">Lanzamiento *</label>
+        
+        <div class="form-group">
+            <label for="releaseDate">Lanzamiento *</label>
             <input type="date" class="form-control" id="releaseDate" name="date" required>
         </div>
-        <div class="mb-3">
-            <label for="director" class="form-label">Director *</label>
+        
+        <div class="form-group">
+            <label for="director">Director *</label>
             <input type="text" class="form-control" id="director" name="director" required>
         </div>
-        <div class="mb-3">
-            <label for="genre" class="form-label">Género *</label>
+        
+        <div class="form-group">
+            <label for="genre">Género *</label>
             <input type="text" class="form-control" id="genre" name="genre" required>
         </div>
-        <div class="mb-3">
-            <label for="language" class="form-label">Idioma *</label>
+        
+        <div class="form-group">
+            <label for="language">Idioma *</label>
             <select required name="language" class="form-control" id="language">
                 <option value="Ingles">Inglés</option>
                 <option value="Español">Español</option>
@@ -35,8 +44,8 @@
             </select>
         </div>
         
-        <div class="mb-3">
-            <label for="producerSelect" class="form-label">Productora *</label>
+        <div class="form-group">
+            <label for="producerSelect">Productora *</label>
             <select required name="id_productoras" class="form-control" id="producerSelect">
                 <option value="">Seleccione una productora</option>
                 <?php if (!empty($producers)): ?>
@@ -49,8 +58,9 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+        <button type="submit" class="btn btn-primary btn-block">Guardar</button>
     </form>
+</div>
 
 </body>
 </html>
