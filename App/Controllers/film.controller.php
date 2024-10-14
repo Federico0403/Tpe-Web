@@ -23,21 +23,14 @@ class FilmsController {
         $this->producerModel = new producerModel(); // Asegúrate de que el nombre sea correcto
 
     }
-
-    public function showAddFilmForm() {
-        // Obtengo las productoras del modelo
-        $producers = $this->producerModel->getProducer(); // Llama al método de productoras
-
-        // Incluye el archivo del formulario
-        require 'Templates/form_film.phtml'; // Asegúrate de que este archivo tiene tu formulario
-    }    
-
+    
     public function showFilms() {
-
         $films = $this->model->getFilms();
-       
-        return $this->view->showFilms($films);
+        $producers = $this->producerModel->getProducer(); // Obtener productoras
+    
+        return $this->view->showFilms($films, $producers); // Pasar ambos a la vista
     }
+    
 
     public function showHome() {
         $films = $this->model->getFilms();
@@ -46,37 +39,47 @@ class FilmsController {
     }
 
     public function addFilm() {
-        if (!isset($_POST['name_film']) || empty($_POST['name_film'])){
-            return $this->view->showError('Falta completar el nombre de la Pelicula');
+        // Validación de campos obligatorios
+        if (empty($_POST['name_film'])) {
+            return $this->view->showError('Falta completar el nombre de la película');
         }
-        if (!isset($_POST['date']) || empty($_POST['date'])){
+        if (empty($_POST['date'])) {
             return $this->view->showError('Falta completar la fecha de estreno');
         }
-        if (!isset($_POST['director']) || empty($_POST['director'])){
+        if (empty($_POST['director'])) {
             return $this->view->showError('Falta completar el nombre del director');
         }
-        if (!isset($_POST['genre']) || empty($_POST['genre'])){
-            return $this->view->showError('Falta completar el genero de la pelicula');
+        if (empty($_POST['genre'])) {
+            return $this->view->showError('Falta completar el género de la película');
         }
-        if (!isset($_POST['language']) || empty($_POST['language'])){
-            return $this->view->showError('Falta completar idioma de la pelicula');
+        if (empty($_POST['language'])) {
+            return $this->view->showError('Falta completar el idioma de la película');
         }
-        if (!isset($_POST['id_productoras']) || empty($_POST['id_productoras'])) {
+        if (empty($_POST['id_productoras'])) {
             return $this->view->showError('Falta seleccionar una productora');
         }
-
-        $name_film = $_POST['name_film'];
-        $date = $_POST['date'];
-        $director = $_POST['director'];
-        $genre = $_POST['genre'];
-        $language = $_POST['language'];
-        $id_productoras = $_POST['id_productoras'];
-
+    
+        // Sanitizar y asignar variables
+        $name_film = htmlspecialchars(trim($_POST['name_film']));
+        $date = htmlspecialchars(trim($_POST['date']));
+        $director = htmlspecialchars(trim($_POST['director']));
+        $genre = htmlspecialchars(trim($_POST['genre']));
+        $language = htmlspecialchars(trim($_POST['language']));
+        $id_productoras = (int)$_POST['id_productoras']; // Convertir a entero para evitar inyecciones
+    
+        // Intentar insertar la película
         $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras);
-
-        // Redirijo al home
-        header('location: ' . BASE_URL);
+    
+        // Verificar si la inserción fue exitosa
+        if ($id_peliculas) {
+            // Redirigir al home
+            header('Location: ' . BASE_URL);
+            exit(); // Asegurarse de que el script se detenga después de la redirección
+        } else {
+            return $this->view->showError('Error al agregar la película. Por favor, inténtelo de nuevo.');
+        }
     }
+
 
     public function deleteFilm($id_peliculas) {
         // Obtengo la pelicula especifica por id

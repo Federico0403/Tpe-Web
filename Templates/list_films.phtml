@@ -13,7 +13,7 @@
                     <div class="film-info">
                         <!-- Cambié a un enlace aquí -->
                         <h3><a href="film/<?= $film->id_peliculas ?>" class="text-decoration-none"><?= htmlspecialchars($film->Nombre_pelicula) ?></a></h3>
-                        <p><?= htmlspecialchars($film->genero) ?></p>
+                        <p>Genero: <?= htmlspecialchars($film->genero) ?></p>
                     </div>
                     <a href="eliminar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a>
                     <a href="editar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Actualizar</a>

@@ -13,6 +13,7 @@ class producerModel {
         $query->execute();
         $producer = $query->fetchAll(PDO::FETCH_OBJ);
 
+
         return $producer;
     }
 }
