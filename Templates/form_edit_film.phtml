@@ -1,33 +1,65 @@
-<form action="<?= BASE_URL . 'editar/' . $film->id_peliculas ?>" method="POST">
+<?php require 'Templates/Layout/header.phtml' ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Películas</title>
+    <!-- Enlazar Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<form action="<?= BASE_URL . 'editar/' . $film->id_peliculas ?>" method="POST" class="container mt-5">
+    <h1 class="text-center">Actualizar Película</h1>
+
     <div class="form-group">
-        <label for="name_film">Nombre de la Película:</label>
-        <input type="text" name="name_film" value="<?= htmlspecialchars($film->Nombre_pelicula) ?>" required>
+        <label for="name_film">Nombre de la Película *</label>
+        <input type="text" class="form-control" id="name_film" name="name_film" value="<?= htmlspecialchars($film->Nombre_pelicula) ?>" required>
     </div>
+
     <div class="form-group">
-        <label for="date">Fecha de Estreno:</label>
-        <input type="date" name="date" value="<?= htmlspecialchars($film->Lanzamiento) ?>" required>
+        <label for="date">Fecha de Estreno *</label>
+        <input type="date" class="form-control" id="date" name="date" value="<?= htmlspecialchars($film->Lanzamiento) ?>" required>
     </div>
+
     <div class="form-group">
-        <label for="director">Director:</label>
-        <input type="text" name="director" value="<?= htmlspecialchars($film->director) ?>" required>
+        <label for="director">Director *</label>
+        <input type="text" class="form-control" id="director" name="director" value="<?= htmlspecialchars($film->director) ?>" required>
     </div>
+
     <div class="form-group">
-        <label for="genre">Género:</label>
-        <input type="text" name="genre" value="<?= htmlspecialchars($film->genero) ?>" required>
+        <label for="genre">Género *</label>
+        <input type="text" class="form-control" id="genre" name="genre" value="<?= htmlspecialchars($film->genero) ?>" required>
     </div>
+
     <div class="form-group">
-        <label for="language">Idioma:</label>
-        <input type="text" name="language" value="<?= htmlspecialchars($film->Idioma) ?>" required>
-    </div>
-    <div class="form-group">
-        <label for="id_productoras">Productora:</label>
-        <select name="id_productoras" required>
-            <?php foreach ($producers as $producer): ?>
-                <option value="<?= $producer->id_productoras ?>" <?= $film->id_productoras == $producer->id_productoras ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($producer->Nombre_productora) ?>
-                </option>
-            <?php endforeach; ?>
+        <label for="language">Idioma *</label>
+        <select required name="language" class="form-control" id="language">
+            <option value="Ingles" <?= ($film->Idioma == 'Ingles') ? 'selected' : '' ?>>Inglés</option>
+            <option value="Español" <?= ($film->Idioma == 'Español') ? 'selected' : '' ?>>Español</option>
+            <option value="Frances" <?= ($film->Idioma == 'Frances') ? 'selected' : '' ?>>Francés</option>
+            <option value="Portugues" <?= ($film->Idioma == 'Portugues') ? 'selected' : '' ?>>Portugués</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Actualizar Película</button>
+
+    <div class="form-group">
+            <label for="producerSelect">Productora *</label>
+            <select required name="id_productoras" class="form-control" id="producerSelect">
+                <option value="">Seleccione una productora</option>
+                <?php if (!empty($producers)): ?>
+                    <?php foreach ($producers as $producer): ?>
+                        <option value="<?= htmlspecialchars($producer->id_productoras); ?>"><?= htmlspecialchars($producer->nombre_productora); ?></option>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <option value="">No hay productoras disponibles</option>
+                <?php endif; ?>
+            </select>
+        </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Actualizar Película</button>
 </form>
+
+</body>
+</html>
+<?php require 'Templates/Layout/footer.phtml' ?>
