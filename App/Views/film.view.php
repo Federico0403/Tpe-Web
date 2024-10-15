@@ -16,4 +16,8 @@ class FilmsView {
     public function showHome($films) {
         require 'Templates/home_films.phtml';
     }
+
+    public function showEditFilmForm($film, $producers) {
+        require 'Templates/form_edit_film.phtml';
+    }
 }
