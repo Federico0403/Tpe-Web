@@ -147,10 +147,14 @@ class FilmsController {
     public function showFilmDetails($id_peliculas) {
         // Obtengo la película específica por ID
         $film = $this->model->getFilmById($id_peliculas);
+        
+        // Obtengo todas las películas para mostrar debajo.
+        $films = $this->model->getFilms();
     
-        // Muestra la vista con los detalles de la película
-        require 'Templates/film_details.phtml'; 
+        // Muestra la vista con los detalles de la película y la lista de otras películas
+        $this->view->showFilmDetails($film, $films);
     }
+    
     
     
     

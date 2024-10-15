@@ -20,4 +20,8 @@ class FilmsView {
     public function showEditFilmForm($film, $producers) {
         require 'Templates/form_edit_film.phtml';
     }
+
+    public function showFilmDetails($film, $films) {
+        require 'Templates/film_details.phtml';
+    }
 }
