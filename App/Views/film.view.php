@@ -2,6 +2,12 @@
 
 class FilmsView {
 
+    public $user = null;
+
+    public function __construct($user) {
+        $this->user = $user;
+    }
+
     public function showFilms($films, $producers) {
         // La vista define una nueva variable con la cantidad de peliculas.
         $count = count($films);

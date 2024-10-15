@@ -1,11 +1,15 @@
 <?php
 
+require_once './Libs/response.php';
+require_once './App/Middlewares/session.auth.middleware.php';
 require_once './App/Controllers/film.controller.php';
 require_once './App/Controllers/producer.controller.php';
+require_once './App/Controllers/auth.controller.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
+$res = new Response();
 
 $action = 'inicio'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
@@ -20,39 +24,53 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'inicio':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->showHome();
         break;
 
     case 'agregar':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->showFilms();
         break;
     
     case 'nueva':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->addFilm();
         break;
     
     case 'eliminar':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->deleteFilm($params[1]);
         break;
 
     case 'editar':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->editFilm($params[1]);
         break;
         
     // Nuevo caso para mostrar detalles de la película
     case 'film':
-        $controller = new FilmsController();
+        $controller = new FilmsController($res);
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
     
     case 'productor':
         $controller = new producerController();
         $controller->showProducer();
+        break;
+    
+    case 'showLogin':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
         break;
     
     default:

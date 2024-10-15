@@ -12,12 +12,12 @@ class FilmsController {
 
 
     // Constructor para inicializar el modelo y la vista
-    public function __construct() {
+    public function __construct($res) {
         // Instancio el modelo de películas
         $this->model = new FilmsModel();
 
         // Instancio la vista de películas 
-        $this->view = new FilmsView();
+        $this->view = new FilmsView($res->user);
 
         // Instancio el modelo de productoras
         $this->producerModel = new producerModel(); 
