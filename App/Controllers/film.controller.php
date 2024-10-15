@@ -97,13 +97,12 @@ class FilmsController {
 
     public function editFilm($id_peliculas) {
         // Obtengo la película específica por id
-        $film = $this->model->getFilmById($id_peliculas); // Usa getFilmById para obtener una película, no todas
+        $film = $this->model->getFilmById($id_peliculas); // Usa getFilmById para obtener una película
     
         if (!$film) {
             return $this->view->showError("No existe la película con el id = $id_peliculas");
         }
     
-        // Si se envía el formulario (método POST)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validación de los campos del formulario
             if (empty($_POST['name_film'])) {
@@ -138,12 +137,10 @@ class FilmsController {
     
             // Redirijo al home
             header('Location: ' . BASE_URL);
-            exit(); // Importante para evitar seguir ejecutando el código después de redirigir
         }
     
-        // Si no se envía el formulario (método GET), muestra el formulario de edición
-        $producers = $this->producerModel->getProducer(); // Obtener las productoras para el select
-        return $this->view->showEditFilmForm($film, $producers); // Muestra el formulario de edición con los datos actuales
+        $producers = $this->producerModel->getProducer(); 
+        return $this->view->showEditFilmForm($film, $producers); 
     }
     
 
@@ -152,7 +149,7 @@ class FilmsController {
         $film = $this->model->getFilmById($id_peliculas);
     
         // Muestra la vista con los detalles de la película
-        require 'Templates/film_details.phtml'; // Asegúrate de crear este archivo
+        require 'Templates/film_details.phtml'; 
     }
     
     
