@@ -52,30 +52,24 @@ switch ($params[0]) {
         $controller = new FilmsController($res);
         $controller->editFilm($params[1]);
         break;
-<<<<<<< HEAD
-    case 'producers':
-=======
-        
-    // Nuevo caso para mostrar detalles de la película
+   // Nuevo caso para mostrar detalles de la película
     case 'film':
         $controller = new FilmsController($res);
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
     
     case 'productor':
->>>>>>> e4f3f4709b261902649b820570925ee787ede991
         $controller = new producerController();
         $controller->showProducers();
         break;
-<<<<<<< HEAD
-    case 'seeProducer':
+
+    case 'verProductor':
         if (isset($params[1]) && is_numeric($params[1])) {
             $controller = new producerController();
             $controller->seeProducer($params[1]);
         } else {
             echo "ID de productora inválido.";
         }
-=======
     
     case 'showLogin':
         $controller = new AuthController();
@@ -86,7 +80,6 @@ switch ($params[0]) {
         $controller->login();
         break;
     
->>>>>>> e4f3f4709b261902649b820570925ee787ede991
     default:
         echo "404 Page Not Found";
         break;
