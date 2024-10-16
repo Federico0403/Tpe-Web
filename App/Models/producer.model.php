@@ -30,4 +30,10 @@ class producerModel {
 
         return $id_producer;
     } 
+    public function deleteProducer($id){
+        $query = $this->db->prepare('DELETE FROM productoras WHERE id_productora = ?');
+        $query->execute([$id]);
+
+    }
 }
+

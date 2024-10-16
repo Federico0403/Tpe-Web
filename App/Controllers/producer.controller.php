@@ -62,6 +62,13 @@ require_once './App/Views/film.view.php';
     
 
     }
+    public function deleteProducer($id){
+
+        $this->model->deleteProducer($id);
+
+        header('Location: ' . BASE_URL);
+
+    }
     
 
 

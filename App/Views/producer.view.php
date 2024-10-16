@@ -2,15 +2,15 @@
  class producerView {
     public function showProducers($producers) {
 
-        require 'Templates/home_producers.phtml';
+        require 'Templates/Producers/home_producers.phtml';
     }
     public function seeProducer($producer){
-        require 'Templates/SeeProducer.phtml';
+        require 'Templates/Producers/SeeProducer.phtml';
     }
     public function addProducer($producers){
-        require 'Templates/list_producer.phtml';
+        require 'Templates/Producers/list_producer.phtml';
     }
     public function showAddProducer(){
-        require 'Templates/list_films.phtml';
+        require 'Templates/Films/list_films.phtml';
     }
 }
