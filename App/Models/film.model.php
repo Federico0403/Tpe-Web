@@ -22,7 +22,7 @@ class FilmsModel {
     }
 
     public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras) {
-        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productoras) VALUES (?, ?, ?, ?, ?, ?)');
+        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora) VALUES (?, ?, ?, ?, ?, ?)');
         $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras]);
 
         // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
