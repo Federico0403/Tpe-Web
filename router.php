@@ -70,6 +70,7 @@ switch ($params[0]) {
         } else {
             echo "ID de productora inválido.";
         }
+        break;
     
     case 'showLogin':
         $controller = new AuthController();

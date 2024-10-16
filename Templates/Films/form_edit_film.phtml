@@ -1,15 +1,5 @@
 <?php require 'Templates/Layout/header.phtml' ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Películas</title>
-    <!-- Enlazar Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+
 
 <form action="<?= BASE_URL . 'editar/' . $film->id_peliculas ?>" method="POST" class="container mt-5">
     <h1 class="text-center">Actualizar Película</h1>
