@@ -23,4 +23,11 @@ class producerModel {
 
         return $producer;
     }
+    public function insertProducer($name_producer, $year_foundation, $founders, $country_origin){
+        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen) VALUE (?,?,?,?)');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin]);
+        $id_producer = $this->db->lastInsertId();
+
+        return $id_producer;
+    } 
 }

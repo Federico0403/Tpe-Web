@@ -10,4 +10,7 @@
     public function addProducer(){
         require 'Templates/form_producer.phtml';
     }
+    public function showAddFilms(){
+        require 'Templates/list_films.phtml';
+    }
 }

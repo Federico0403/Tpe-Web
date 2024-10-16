@@ -30,4 +30,5 @@ class FilmsView {
     public function showFilmDetails($film, $films) {
         require 'Templates/film_details.phtml';
     }
+
 }

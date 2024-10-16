@@ -1,6 +1,7 @@
 <?php
 require_once './App/Models/producer.model.php';
 require_once './App/Views/producer.view.php';
+require_once './App/Views/film.view.php';
  class producerController {
     private $model;
     private $view;
@@ -49,8 +50,12 @@ require_once './App/Views/producer.view.php';
         $year_foundation = $_POST['input_year_foundation'];
         $founders= $_POST['founders'];
         $country_origin = $_POST['country_origin'];
-       
-        
+
+        $this->model->insertProducer($name_producer, $year_foundation, $founders, $country_origin);
+
+        $this->view->showAddFilms();
+    
+
     }
     
 
