@@ -28,6 +28,31 @@ require_once './App/Views/producer.view.php';
             return $this->view->showError('No se encontró ninguna productora con el ID ');
         }
     }
+    public function addProducer() {
+        $this->view->addProducer();
+    }
+    public function addedProducer(){
+        if (empty($_POST['input_name_producer'])) {
+            return $this->view->showError('Falta completar el nombre de la película');
+        }
+        if (empty($_POST['input_year_foundation'])) {
+            return $this->view->showError('Falta completar la fecha de estreno');
+        }
+        if (empty($_POST['founders'])) {
+            return $this->view->showError('Falta completar el nombre del director');
+        }
+        if (empty($_POST['country_origin'])) {
+            return $this->view->showError('Falta completar el género de la película');
+        }
+       
+        $name_producer = $_POST['input_name_producer'];
+        $year_foundation = $_POST['input_year_foundation'];
+        $founders= $_POST['founders'];
+        $country_origin = $_POST['country_origin'];
+       
+        
+    }
+    
 
 
 }

@@ -68,7 +68,7 @@ class FilmsController {
         $language = $_POST['language'];
         $id_productoras = $_POST['id_productoras']; 
     
-        // Intento la pelicula
+        // Insento la pelicula
         $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras);
     
         // Verificar si la inserción fue exitosa

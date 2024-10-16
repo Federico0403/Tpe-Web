@@ -79,6 +79,14 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->login();
         break;
+    case 'agregarProductora':
+        $controller = new producerController();
+        $controller->addProducer();
+        break;
+    case 'productoraAgregada':
+        $controller = new producerController();
+        $controller->addedProducer();
+        break;
     
     default:
         echo "404 Page Not Found";
