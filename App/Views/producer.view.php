@@ -1,10 +1,10 @@
 <?php
  class producerView {
-    public function showProducer($producer) {
+    public function showProducers($producers) {
 
-        // La vista define una nueva variable con la cantidad de peliculas.
-        $count = count($producer);
-
-        require 'Templates/list_producer.phtml';
+        require 'Templates/list_producers.phtml';
+    }
+    public function seeProducer($producer){
+        require 'Templates/seeProducer.phtml';
     }
 }

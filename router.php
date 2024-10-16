@@ -38,10 +38,17 @@ switch ($params[0]) {
         $controller = new FilmsController();
         $controller->editFilm($params[1]);
         break;
-    case 'producer':
+    case 'producers':
         $controller = new producerController();
-        $controller->showProducer();
+        $controller->showProducers();
         break;
+    case 'seeProducer':
+        if (isset($params[1]) && is_numeric($params[1])) {
+            $controller = new producerController();
+            $controller->seeProducer($params[1]);
+        } else {
+            echo "ID de productora inválido.";
+        }
     default:
         echo "404 Page Not Found";
         break;

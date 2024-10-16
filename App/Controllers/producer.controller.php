@@ -12,12 +12,23 @@ require_once './App/Views/producer.view.php';
         // Instancio 
         $this->view = new producerView();
     }
-    public function showProducer() {
+    public function showProducers() {
 
-        $producer = $this->model->getProducer();
+        $producers = $this->model->getProducers();
        
-        return $this->view->showProducer($producer);
+        return $this->view->showProducers($producers);
     }
+    public function seeProducer($producer) {
+
+        $producer = $this->model->getProducer($producer);
+       // Verificar si la productora existe
+        if ($producer) {
+            return $this->view->seeProducer($producer);
+        } else {
+            return $this->view->showError('No se encontró ninguna productora con el ID ');
+        }
+    }
+
 
 }
 
