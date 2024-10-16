@@ -3,11 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2024 a las 22:51:14
+-- Tiempo de generación: 15-10-2024 a las 23:08:20
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
-
-USE netflix;
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +46,9 @@ INSERT INTO `peliculas` (`id_peliculas`, `Nombre_pelicula`, `Lanzamiento`, `dire
 (2, 'One day', '2011-08-08', 'Lone Scherfig', 'Ingles', 'cine romantico ', 1),
 (7, 'Duro de matar 1', '1988-12-15', 'John MCTiernan', 'Ingles', 'Accion', 3),
 (9, 'Scary Movie', '2000-10-26', 'Kennen ivory Wayans', 'Ingles', 'Comedia', 4),
-(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5);
+(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5),
+(18, 'Buscando a Nemo 2', '0222-02-22', '222', 'Español', '222', 1),
+(19, 'asdsad', '3232-02-22', '132131', 'Español', '1323123', 3);
 
 -- --------------------------------------------------------
 
@@ -73,6 +73,26 @@ INSERT INTO `productoras` (`id_productoras`, `nombre_productora`, `año_fundacio
 (4, 'MiraMax', '1979-02-13'),
 (5, 'Warner Bros', '1923-04-04');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
+(1, 'usuario@gmail.com', 'contraseña'),
+(2, 'usuario2@gmail.com', 'contraseña');
+
 --
 -- Índices para tablas volcadas
 --
@@ -91,6 +111,13 @@ ALTER TABLE `productoras`
   ADD PRIMARY KEY (`id_productoras`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -98,13 +125,19 @@ ALTER TABLE `productoras`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_peliculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_peliculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `productoras`
 --
 ALTER TABLE `productoras`
   MODIFY `id_productoras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

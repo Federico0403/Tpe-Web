@@ -1,13 +1,17 @@
 <?php
 
+require_once './Libs/response.php';
+require_once './App/Middlewares/session.auth.middleware.php';
 require_once './App/Controllers/film.controller.php';
 require_once './App/Controllers/producer.controller.php';
+require_once './App/Controllers/auth.controller.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
+$res = new Response();
 
-$action = 'films'; // accion por defecto si no se envia ninguna
+$action = 'inicio'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
@@ -19,29 +23,51 @@ $params = explode('/', $action);
 // ej TPE-WEB/pelicuas
 
 switch ($params[0]) {
-    case 'films':
-        $controller = new FilmsController();
+    case 'inicio':
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
+        $controller->showHome();
+        break;
+
+    case 'agregar':
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->showFilms();
         break;
     
     case 'nueva':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->addFilm();
         break;
     
     case 'eliminar':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->deleteFilm($params[1]);
         break;
 
     case 'editar':
-        $controller = new FilmsController();
+        sessionAuthMiddleware($res);
+        $controller = new FilmsController($res);
         $controller->editFilm($params[1]);
         break;
+<<<<<<< HEAD
     case 'producers':
+=======
+        
+    // Nuevo caso para mostrar detalles de la película
+    case 'film':
+        $controller = new FilmsController($res);
+        $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
+        break;
+    
+    case 'productor':
+>>>>>>> e4f3f4709b261902649b820570925ee787ede991
         $controller = new producerController();
         $controller->showProducers();
         break;
+<<<<<<< HEAD
     case 'seeProducer':
         if (isset($params[1]) && is_numeric($params[1])) {
             $controller = new producerController();
@@ -49,6 +75,18 @@ switch ($params[0]) {
         } else {
             echo "ID de productora inválido.";
         }
+=======
+    
+    case 'showLogin':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
+        break;
+    
+>>>>>>> e4f3f4709b261902649b820570925ee787ede991
     default:
         echo "404 Page Not Found";
         break;

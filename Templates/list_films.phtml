@@ -2,40 +2,30 @@
 
 <?php require 'Templates/form_film.phtml' ?>
 
-<ul class="container">
-    <div class="row">
+<div class="container mt-5">
+    <ul class="row list-unstyled">
         <?php foreach($films as $film): ?>
-            <li class="col">
-                <div class="film-card">
-                    <!-- Div para la imagen de la película -->
-                    <div class="film-image" style="width: 150px; height: 150px; background-color: #f0f0f0; border: 1px solid #ddd;">
-                        <img src="" alt="<?= htmlspecialchars($film->Nombre_pelicula) ?>" style="width: 100%; height: 100%; object-fit: cover;">
+            <li class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="film-image" style="width: 100%; height: 200px; background-color: #f0f0f0; border: 1px solid #ddd;">
+                        <img src="" alt="<?= htmlspecialchars($film->Nombre_pelicula) ?>" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <!--
-                        date("d/m/y", strtotime($film->Lanzamiento))
-                        htmlspecialchars($film->director)
-                        htmlspecialchars($film->Idioma)
-
-                        (Esto mejor lo muestro cuando navegue por cada pelicula)
-
-                    -->
-
-                    <!-- Nombre de la película y el género -->
-                    <div class="film-info">
-                        <h3><?= htmlspecialchars($film->Nombre_pelicula) ?></h3>
-                        <p><?= htmlspecialchars($film->genero) ?></p>
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="film/<?= $film->id_peliculas ?>" class="text-decoration-none"><?= htmlspecialchars($film->Nombre_pelicula) ?></a>
+                        </h3>
+                        <p class="card-text">Género: <?= htmlspecialchars($film->genero) ?></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="eliminar/<?= $film->id_peliculas ?>" class='btn btn-danger btn-sm'>Borrar</a>
+                            <a href="editar/<?= $film->id_peliculas ?>" class='btn btn-warning btn-sm'>Actualizar</a>
+                        </div>
                     </div>
-                    <a href="eliminar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a>
-                    <a href="editar/<?= $film->id_peliculas ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Actualizar</a>
                 </div>
             </li>
-        <?php endforeach ?>
-    </div>    
-</ul>
+        <?php endforeach; ?>
+    </ul>
 
-<p class="mt-3"><small>Mostrando <?= count($films) ?> Peliculas</small></p>
+    <p class="mt-3"><small>Mostrando <?= count($films) ?> Películas</small></p>
+</div>
 
 <?php require 'Templates/Layout/footer.phtml' ?>
-
-           
-   
