@@ -12,7 +12,7 @@ class FilmsView {
         // La vista define una nueva variable con la cantidad de peliculas.
         $count = count($films);
         
-        require 'Templates/list_films.phtml';
+        require 'Templates/Films/list_films.phtml';
     }
 
     public function showError($error) {
@@ -20,15 +20,15 @@ class FilmsView {
     }
 
     public function showHome($films) {
-        require 'Templates/home_films.phtml';
+        require 'Templates/Films/home_films.phtml';
     }
 
     public function showEditFilmForm($film, $producers) {
-        require 'Templates/form_edit_film.phtml';
+        require 'Templates/Films/form_edit_film.phtml';
     }
 
     public function showFilmDetails($film, $films) {
-        require 'Templates/film_details.phtml';
+        require 'Templates/Films/film_details.phtml';
     }
 
 }
