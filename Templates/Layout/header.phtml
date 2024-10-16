@@ -20,14 +20,11 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-
-            <li><a href="inicio" class="nav-link px-2 link-secondary">inicio</a></li>
-            <li><a href="agregar" class="nav-link px-2">agregar</a></li>
-            <li><a href="productor" class="nav-link px-2">Productor</a></li>
+            <li><a href="<?=BASE_URL ?>inicio" class="nav-link px-2 link-secondary">inicio</a></li>
+            <li><a href="<?=BASE_URL ?>agregar" class="nav-link px-2">agregar</a></li>
+            <li><a href="<?=BASE_URL ?>productor" class="nav-link px-2">Productor</a></li>
         </ul>
-            <?php if($this->user): ?>
-                <span class="navbar-text"><?= $this->user->email ?></span>
-            <?php endif; ?>
+<!-- AQUI SE MUESTRA EL USUARIO LOGUEADO -->
 
             <div class="col-md-3 text-end">
                 <a href="<?= BASE_URL ?>showLogin" class="btn btn-outline-primary me-2">Login</a>

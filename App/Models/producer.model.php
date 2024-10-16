@@ -16,7 +16,6 @@ class producerModel {
         return $producers;
     }
     public function getProducer($id) {
-
         $query = $this->db->prepare('SELECT * FROM productoras WHERE id_productora = ?');
         $query->execute([$id]);
         $producer = $query->fetch(PDO::FETCH_OBJ);

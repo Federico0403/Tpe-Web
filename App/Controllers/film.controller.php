@@ -27,7 +27,7 @@ class FilmsController {
     public function showFilms() {
         $films = $this->model->getFilms();
         // Obtengo las productoras
-        $producers = $this->producerModel->getProducer(); 
+        $producers = $this->producerModel->getProducers(); 
         // las paso a la vista
         return $this->view->showFilms($films, $producers); 
     }
@@ -120,7 +120,7 @@ class FilmsController {
             if (empty($_POST['language'])) {
                 return $this->view->showError('Falta completar el idioma de la película');
             }
-            if (empty($_POST['id_productoras'])) {
+            if (empty($_POST['id_productora'])) {
                 return $this->view->showError('Falta seleccionar una productora');
             }
     
@@ -130,10 +130,10 @@ class FilmsController {
             $director = $_POST['director'];
             $genre = $_POST['genre'];
             $language = $_POST['language'];
-            $id_productoras = $_POST['id_productoras']; 
+            $id_productoras = $_POST['id_productora']; 
     
             // Llamo al modelo para actualizar los datos
-            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras);
+            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productora);
     
             // Redirijo al home
             header('Location: ' . BASE_URL);
