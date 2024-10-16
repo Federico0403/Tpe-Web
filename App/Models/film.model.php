@@ -37,10 +37,10 @@ class FilmsModel {
         $query->execute([$id_peliculas]);
     }
 
-    public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productora) {
+    public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras) {
         // Actualizo los datos de la película en la base de datos
         $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ? WHERE id_peliculas = ?');
-        $query->execute([$name_film, $date, $director, $genre, $language, $id_productora, $id_peliculas]);
+        $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $id_peliculas]);
     }
     
 

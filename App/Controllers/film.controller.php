@@ -133,13 +133,13 @@ class FilmsController {
             $id_productoras = $_POST['id_productora']; 
     
             // Llamo al modelo para actualizar los datos
-            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productora);
+            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras);
     
             // Redirijo al home
             header('Location: ' . BASE_URL);
         }
     
-        $producers = $this->producerModel->getProducer(); 
+        $producers = $this->producerModel->getProducers(); 
         return $this->view->showEditFilmForm($film, $producers); 
     }
     

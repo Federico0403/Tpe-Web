@@ -47,11 +47,11 @@
 
     <div class="form-group">
             <label for="producerSelect">Productora *</label>
-            <select required name="id_productoras" class="form-control" id="producerSelect">
+            <select required name="id_productora" class="form-control">
                 <option value="">Seleccione una productora</option>
                 <?php if (!empty($producers)): ?>
                     <?php foreach ($producers as $producer): ?>
-                        <option value="<?= htmlspecialchars($producer->id_productoras); ?>"><?= htmlspecialchars($producer->nombre_productora); ?></option>
+                        <option value="<?= htmlspecialchars($producer->id_productora); ?>"><?= htmlspecialchars($producer->nombre_productora); ?></option>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <option value="">No hay productoras disponibles</option>
