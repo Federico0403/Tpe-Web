@@ -53,7 +53,7 @@ switch ($params[0]) {
         $controller->editFilm($params[1]);
         break;
    // Nuevo caso para mostrar detalles de la película
-    case 'film':
+    case 'pelicula':
         $controller = new FilmsController($res);
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
