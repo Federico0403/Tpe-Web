@@ -30,7 +30,8 @@ require_once './App/Views/film.view.php';
         }
     }
     public function addProducer() {
-        $this->view->addProducer();
+        $producers = $this->model->getProducers();
+        $this->view->addProducer($producers);
     }
     public function addedProducer(){
         if (empty($_POST['input_name_producer'])) {
@@ -52,8 +53,12 @@ require_once './App/Views/film.view.php';
         $country_origin = $_POST['country_origin'];
 
         $this->model->insertProducer($name_producer, $year_foundation, $founders, $country_origin);
-
-        $this->view->showAddFilms();
+        $id_producer=$this->view->showAddProducer();
+        if ($id_producer) {
+           header('Location: ' . BASE_URL);
+        }else{
+            return $this->view->showError('Error la pelicula no se pudo insertar');
+        }
     
 
     }

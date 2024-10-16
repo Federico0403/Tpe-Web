@@ -63,7 +63,7 @@ switch ($params[0]) {
         $controller->showProducers();
         break;
 
-    case 'verProductor':
+    case 'verProductora':
         if (isset($params[1]) && is_numeric($params[1])) {
             $controller = new producerController();
             $controller->seeProducer($params[1]);
