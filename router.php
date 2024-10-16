@@ -92,6 +92,9 @@ switch ($params[0]) {
         $controller = new producerController();
         $controller->deleteProducer($params[1]);
         break;
+    case 'editarProductora':
+        $controller = new producerController();
+        $controller->modifyProducer($params[1]);
     default:
         echo "404 Page Not Found";
         break;

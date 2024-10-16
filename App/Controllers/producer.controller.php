@@ -35,16 +35,16 @@ require_once './App/Views/film.view.php';
     }
     public function addedProducer(){
         if (empty($_POST['input_name_producer'])) {
-            return $this->view->showError('Falta completar el nombre de la película');
+            return $this->view->showError('Falta completar el nombre de la productora');
         }
         if (empty($_POST['input_year_foundation'])) {
-            return $this->view->showError('Falta completar la fecha de estreno');
+            return $this->view->showError('Falta completar el año de fundacion');
         }
         if (empty($_POST['founders'])) {
-            return $this->view->showError('Falta completar el nombre del director');
+            return $this->view->showError('Falta completar el/los fundadores');
         }
         if (empty($_POST['country_origin'])) {
-            return $this->view->showError('Falta completar el género de la película');
+            return $this->view->showError('Falta completar el pais de origen');
         }
        
         $name_producer = $_POST['input_name_producer'];
@@ -67,6 +67,12 @@ require_once './App/Views/film.view.php';
         $this->model->deleteProducer($id);
 
         header('Location: ' . BASE_URL);
+
+    }
+    public function modifyProducers($id){
+        $producer=$this->model->getProducer($id);
+
+        
 
     }
     
