@@ -42,6 +42,7 @@
             <option value="Frances" <?= ($film->Idioma == 'Frances') ? 'selected' : '' ?>>Francés</option>
             <option value="Portugues" <?= ($film->Idioma == 'Portugues') ? 'selected' : '' ?>>Portugués</option>
         </select>
+        <button action="<?= BASE_URL . 'agregarProductora/'?>" method="POST" class="btn btn-primary btn-block">Agregar Productora</button>
     </div>
 
     <div class="form-group">
