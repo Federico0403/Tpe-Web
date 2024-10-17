@@ -24,7 +24,7 @@ class producerModel {
         return $producer;
     }
     public function insertProducer($name_producer, $year_foundation, $founders, $country_origin){
-        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen) VALUE (?,?,?,?)');
+        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen) VALUES (?,?,?,?)');
         $query->execute([$name_producer, $year_foundation, $founders, $country_origin]);
         $id_producer = $this->db->lastInsertId();
 
@@ -34,6 +34,10 @@ class producerModel {
         $query = $this->db->prepare('DELETE FROM productoras WHERE id_productora = ?');
         $query->execute([$id]);
 
+    }
+    public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id){
+        $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ? WHERE id_productora = ?');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$id]);
     }
 }
 

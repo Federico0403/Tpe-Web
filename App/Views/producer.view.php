@@ -13,4 +13,11 @@
     public function showAddProducer(){
         require 'Templates/Films/list_films.phtml';
     }
+    public function seeForm($producer){
+        require 'Templates/Producers/form_producers_edit.phtml';
+    }
+    public function showError($error) {
+        require 'Templates/error.phtml';
+    }
+
 }

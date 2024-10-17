@@ -70,6 +70,7 @@ switch ($params[0]) {
         } else {
             echo "ID de productora inválido.";
         }
+        break;
     
     case 'showLogin':
         $controller = new AuthController();
@@ -93,7 +94,8 @@ switch ($params[0]) {
         break;
     case 'editarProductora':
         $controller = new producerController();
-        $controller->modifyProducer($params[1]);
+        $controller->modifyProducers($params[1]);
+        break; 
     default:
         echo "404 Page Not Found";
         break;

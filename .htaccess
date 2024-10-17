@@ -2,8 +2,8 @@
     RewriteEngine On
 
     # Si el archivo o directorio solicitado no existe, pasa la solicitud a router.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
 
     # Permitir que archivos CSS, JS, imágenes, etc. se carguen normalmente
     RewriteRule \.(?:css|js|jpe?g|gif|png)$ - [L]

@@ -1,6 +1,6 @@
 <?php require 'Templates/Layout/header.phtml' ?>
 
-<?php require 'Templates//Producers/form_producer.phtml' ?>
+<?php require 'Templates/Producers/form_producer.phtml' ?>
 
 <div class="container mt-5">
     <ul class="row list-unstyled">
@@ -14,7 +14,7 @@
                         <h3 class="card-title">
                             <a href="verProductora/<?= $producer->id_productora ?>" class="text-decoration-none"><?= htmlspecialchars($producer->nombre_productora) ?></a>
                         </h3>
-                        <p class="card-text">Género: <?= htmlspecialchars($producer->pais_origen) ?></p>
+                        <p class="card-text">Pais de origen: <?= htmlspecialchars($producer->pais_origen) ?></p>
                         <div class="d-flex justify-content-between">
                             <a href="eliminarProductora/<?= $producer->id_productora ?>" class='btn btn-danger btn-sm'>Borrar</a>
                             <a href="editarProductora/<?= $producer->id_productora ?>" class='btn btn-warning btn-sm'>Actualizar</a>
