@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2024 a las 19:38:13
+-- Tiempo de generación: 17-10-2024 a las 22:18:01
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,11 +42,13 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`id_peliculas`, `Nombre_pelicula`, `Lanzamiento`, `director`, `Idioma`, `genero`, `id_productora`) VALUES
-(1, 'Buscando a Nemo', '2003-05-30', 'Andrew Stanton', 'Ingles', 'Animacion infantil', 0),
+(1, 'Buscando a ', '2003-05-30', 'Andrew Stanton', 'Ingles', 'Animacion infantil', 3),
 (2, 'One day', '2011-08-08', 'Lone Scherfig', 'Ingles', 'cine romantico ', 1),
 (7, 'Duro de matar 1', '1988-12-15', 'John MCTiernan', 'Ingles', 'Accion', 3),
 (9, 'Scary Movie', '2000-10-26', 'Kennen ivory Wayans', 'Ingles', 'Comedia', 4),
-(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5);
+(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5),
+(18, 'Buscando a Nemo 2', '0222-02-22', '222', 'Español', '222', 3),
+(19, 'asd', '0002-02-22', '222', 'Frances', '222', 3);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `password`) VALUES
-(1, 'usuario@gmail.com', 'contraseña');
+(1, 'Poupeau04@gmail.com', '$2y$10$Psf9MsKXoMCnN9pzAZF4eu8Clqm4jUYP9fYJbXJaPpzXRz2Yqt1g.'),
+(3, '', '\0');
 
 --
 -- Índices para tablas volcadas
@@ -124,7 +127,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_peliculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_peliculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `productoras`
@@ -136,7 +139,7 @@ ALTER TABLE `productoras`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

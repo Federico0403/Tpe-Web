@@ -30,6 +30,11 @@
                 <?php if($this->user): ?>
                     <span class="navbar-text"><?= $this->user->email ?></span>
                 <?php endif; ?>
+                <?php if($this->user): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout">Salir</a>
+                            </li>
+                        <?php endif; ?>
 
             <div class="col-md-3 text-end">
                 <a href="<?= BASE_URL ?>showLogin" class="btn btn-outline-primary me-2">Login</a>
