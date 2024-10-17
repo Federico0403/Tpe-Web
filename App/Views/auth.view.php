@@ -7,4 +7,8 @@ class AuthView {
         require 'Templates/form_login.phtml';
     }
 
+    public function showError($error) {
+        require 'Templates/error.phtml';
+    }
+
 }

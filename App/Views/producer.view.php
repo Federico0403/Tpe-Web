@@ -1,5 +1,8 @@
 <?php
  class producerView {
+
+    public $user = null;
+
     public function showProducers($producers) {
 
         require 'Templates/Producers/home_producers.phtml';
@@ -9,15 +12,8 @@
         require 'Templates/Producers/SeeProducer.phtml';
         require 'Templates/Layout/footer.phtml';
     }
-    public function addProducer($producers){
-        require 'Templates/Producers/list_producer.phtml';
-    }
-    public function showAddProducer(){
-        require 'Templates/Films/list_films.phtml';
-    }
-    public function seeForm($producer){
-        require 'Templates/Producers/form_producers_edit.phtml';
-    }
+
+
     public function showError($error) {
         require 'Templates/error.phtml';
     }

@@ -18,7 +18,7 @@ class AuthController {
 
     public function login() {
         if (!isset($_POST['email']) || empty($_POST['email'])) {
-            return $this->view->showLogin('Falta completar el nombre de usuario');
+            return $this->view->showLogin('Falta completar el mail del usuario');
         }
     
         if (!isset($_POST['password']) || empty($_POST['password'])) {
@@ -31,18 +31,17 @@ class AuthController {
         // Verificar que el usuario está en la base de datos
         $userFromDB = $this->model->getUserByEmail($email);
 
-        // password: 123456
-        // $userFromDB->password: $2y$10$xQop0wF1YJ/dKhZcWDqHceUM96S04u73zGeJtU80a1GmM.H5H0EHC
-      
+        if ($userFromDB && password_verify($password, $userFromDB->password)) {
             // Guardo en la sesión el ID del usuario
             session_start();
-            $_SESSION['ID_USER'] = $userFromDB->id;
-            $_SESSION['EMAIL_USER'] = $userFromDB->email;
-            $_SESSION['LAST_ACTIVITY'] = time();
+            $_SESSION['id_usuario'] = $userFromDB->id;
+            $_SESSION['email'] = $userFromDB->email;
     
             // Redirijo al home
-            header('Location: ' . BASE_URL);
-        
+            header('Location: ' . BASE_URL . 'productor');
+        } else {
+            return $this->view->showError('credenciales incorrectas');
+        }
         
     }
 

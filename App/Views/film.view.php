@@ -22,11 +22,7 @@ class FilmsView {
     public function showHome($films) {
         require 'Templates/Films/home_films.phtml';
     }
-
-    public function showEditFilmForm($film, $producers) {
-        require 'Templates/Films/form_edit_film.phtml';
-    }
-
+    
     public function showFilmDetails($film, $films) {
         require 'Templates/Films/film_details.phtml';
     }

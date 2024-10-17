@@ -27,6 +27,9 @@
             <li><a href="<?=BASE_URL ?>agregarProductora" class="nav-link px-2"> Agregar Productoras</a></li>
         </ul>
 <!-- AQUI SE MUESTRA EL USUARIO LOGUEADO -->
+                <?php if($this->user): ?>
+                    <span class="navbar-text"><?= $this->user->email ?></span>
+                <?php endif; ?>
 
             <div class="col-md-3 text-end">
                 <a href="<?= BASE_URL ?>showLogin" class="btn btn-outline-primary me-2">Login</a>

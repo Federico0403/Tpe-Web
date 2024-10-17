@@ -1,10 +1,10 @@
 <?php
     function verifyAuthMiddleware($res) {
-        if($res->user) {
-            return;
-        } else {
+        if (!isset($res->user)) { // Verificar si el usuario no está autenticado
             header('Location: ' . BASE_URL . 'showLogin');
-            die();
+            exit(); // Terminar el script después de la redirección
         }
+        // Si el usuario está autenticado, no se necesita hacer nada
     }
+    
 ?>

@@ -39,110 +39,9 @@ class FilmsController {
         return $this->view->showHome($films);
     }
 
-    public function addFilm() {
-        // Validación de campos obligatorios
-        if (empty($_POST['name_film'])) {
-            return $this->view->showError('Falta completar el nombre de la película');
-        }
-        if (empty($_POST['date'])) {
-            return $this->view->showError('Falta completar la fecha de estreno');
-        }
-        if (empty($_POST['director'])) {
-            return $this->view->showError('Falta completar el nombre del director');
-        }
-        if (empty($_POST['genre'])) {
-            return $this->view->showError('Falta completar el género de la película');
-        }
-        if (empty($_POST['language'])) {
-            return $this->view->showError('Falta completar el idioma de la película');
-        }
-        if (empty($_POST['id_productoras'])) {
-            return $this->view->showError('Falta seleccionar una productora');
-        }
-        
-        // Obtengo los datos del formulario
-        $name_film = $_POST['name_film'];
-        $date = $_POST['date'];
-        $director = $_POST['director'];
-        $genre = $_POST['genre'];
-        $language = $_POST['language'];
-        $id_productoras = $_POST['id_productoras']; 
-    
-        // Insento la pelicula
-        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras);
-    
-        // Verificar si la inserción fue exitosa
-        if ($id_peliculas) {
-            // Redirigir al home
-            header('Location: ' . BASE_URL);
-        } else {
-            return $this->view->showError('Error al agregar la película. Por favor, inténtelo de nuevo.');
-        }
-    }
 
 
-    public function deleteFilm($id_peliculas) {
-        // Obtengo la pelicula especifica por id
-        $films = $this->model->getFilms($id_peliculas);
 
-        if(!$films) {
-            return $this->view->showError("No existe la pelicula con el id = $id_peliculas");
-        }
-
-        // Borro y redirijo
-        $this->model->cleanFilm($id_peliculas);
-
-        header('Location: ' . BASE_URL);
-    }
-
-    public function editFilm($id_peliculas) {
-        // Obtengo la película específica por id
-        $film = $this->model->getFilmById($id_peliculas); // Usa getFilmById para obtener una película
-    
-        if (!$film) {
-            return $this->view->showError("No existe la película con el id = $id_peliculas");
-        }
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validación de los campos del formulario
-            if (empty($_POST['name_film'])) {
-                return $this->view->showError('Falta completar el nombre de la película');
-            }
-            if (empty($_POST['date'])) {
-                return $this->view->showError('Falta completar la fecha de estreno');
-            }
-            if (empty($_POST['director'])) {
-                return $this->view->showError('Falta completar el nombre del director');
-            }
-            if (empty($_POST['genre'])) {
-                return $this->view->showError('Falta completar el género de la película');
-            }
-            if (empty($_POST['language'])) {
-                return $this->view->showError('Falta completar el idioma de la película');
-            }
-            if (empty($_POST['id_productora'])) {
-                return $this->view->showError('Falta seleccionar una productora');
-            }
-    
-            // Obtengo los datos del formulario
-            $name_film = $_POST['name_film'];
-            $date = $_POST['date'];
-            $director = $_POST['director'];
-            $genre = $_POST['genre'];
-            $language = $_POST['language'];
-            $id_productoras = $_POST['id_productora']; 
-    
-            // Llamo al modelo para actualizar los datos
-            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras);
-    
-            // Redirijo al home
-            header('Location: ' . BASE_URL);
-        }
-    
-        $producers = $this->producerModel->getProducers(); 
-        return $this->view->showEditFilmForm($film, $producers); 
-    }
-    
 
     public function showFilmDetails($id_peliculas) {
         // Obtengo la película específica por ID
@@ -153,6 +52,10 @@ class FilmsController {
     
         // Muestra la vista con los detalles de la película y la lista de otras películas
         $this->view->showFilmDetails($film, $films);
+    }
+
+    public function showError($error) {
+        $this->view->showError($error);
     }
     
     
