@@ -64,8 +64,19 @@ require_once './App/Views/film.view.php';
     }
     public function deleteProducer($id){
 
-        $this->model->deleteProducer($id);
-        header('Location: ' . BASE_URL . 'productora');
+        $result = $this->model->deleteProducer($id);
+
+        if ($result === true) {
+            // Redireccionar si la eliminación fue exitosa
+            header('Location: ' . BASE_URL . 'productor');
+            exit();
+        } elseif ($result === 'foreign_key_error') {
+            // Mostrar un mensaje de error si la productora tiene películas asociadas
+            $this->view->showError("No se puede eliminar la productora porque tiene películas asociadas.");
+        } else {
+            // Manejar otros errores inesperados
+            $this->view->showError("Ocurrió un error inesperado al intentar eliminar la productora.");
+        }
 
     }
     public function modifyProducers($id){

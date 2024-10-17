@@ -31,8 +31,18 @@ class producerModel {
         return $id_producer;
     } 
     public function deleteProducer($id){
-        $query = $this->db->prepare('DELETE FROM productoras WHERE id_productora = ?');
-        $query->execute([$id]);
+        try {
+            $query = $this->db->prepare("DELETE FROM productoras WHERE id_productora = ?");
+            $query->execute([$id]);
+            return true; // Devuelve true si la eliminación fue exitosa
+        } catch (PDOException $e) {
+            // Si hay una violación de clave foránea, propagamos el error al controlador
+            if ($e->getCode() == '23000') { 
+                return 'foreign_key_error'; 
+            } else {
+                throw $e; 
+            }
+        }
 
     }
     public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id){

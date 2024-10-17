@@ -93,9 +93,13 @@ switch ($params[0]) {
         $controller->deleteProducer($params[1]);
         break;
     case 'editarProductora':
-        $controller = new producerController();
-        $controller->modifyProducers($params[1]);
-        break; 
+        if (isset($params[1]) && is_numeric($params[1])) {
+            $controller = new producerController();
+            $controller->modifyProducers($params[1]);
+        } else {
+            echo "ID de productora inválido o no proporcionado.";
+        }
+        break;
     default:
         echo "404 Page Not Found";
         break;
