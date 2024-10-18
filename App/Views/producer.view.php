@@ -17,5 +17,8 @@
     public function showError($error) {
         require 'Templates/error.phtml';
     }
+    public function showDetails($films){
+        require  'Templates/Producers/productoraDetails.phtml';  
+    }
 
 }

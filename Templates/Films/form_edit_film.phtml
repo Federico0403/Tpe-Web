@@ -1,7 +1,7 @@
 <?php require 'Templates/Layout/header.phtml' ?>
 
 
-<form action="<?= BASE_URL . 'editar/' . $film->id_peliculas ?>" method="POST" class="container mt-5">
+<form action="<?= BASE_URL . 'editar/' . $film->id_peliculas ?>" method="POST" class="container mt-5" enctype="multipart/form-data">
     <h1 class="text-center">Actualizar Película</h1>
 
     <div class="form-group">
@@ -47,10 +47,15 @@
                     <option value="">No hay productoras disponibles</option>
                 <?php endif; ?>
             </select>
+     </div>
+     <div class="form-group ">
+            <label for="image_film"> url imagen *</label>
+            <input type="file" class="form-control" id="image_film" name="image_film" required>
         </div>
 
     <button type="submit" class="btn btn-primary btn-block">Actualizar Película</button>
 </form>
+
 
 </body>
 </html>

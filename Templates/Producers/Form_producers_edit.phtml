@@ -1,6 +1,6 @@
 <?php require 'Templates/Layout/header.phtml' ?>
 <div class="container mt-5">
-<form method="POST" action="<?= BASE_URL ?>editarProductora/<?= $producer->id_productora ?>">
+<form method="POST" action="<?= BASE_URL ?>editarProductora/<?= $producer->id_productora ?>" enctype="multipart/form-data">
      
         <div class="form-group">
             <label for="input_name_producer">Nombre del productor</label>
@@ -27,6 +27,11 @@
             <label for="country_origin">País de origen</label>
             <input type="text" class="form-control" id="country_origin" name="country_origin"
                    value="<?= isset($producer) ? htmlspecialchars($producer->pais_origen) : '' ?>" required>
+        </div>
+        <div class="form-group mt-3">
+            <label for="image_producers"> url imagen</label>
+            <input type="file" class="form-control" id="image_producers" name="image_producers"
+                   value="<?= isset($producer) ? htmlspecialchars($producer->imagen_productora) : '' ?>" required>
         </div>
 
 

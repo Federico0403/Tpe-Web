@@ -29,6 +29,17 @@ require_once './App/Views/film.view.php';
             return $this->view->showError('No se encontró ninguna productora con el ID ');
         }
     }
+    public function seeDetail($id) {
+
+        $films= $this->model->getFilmsFromAProducers($id);
+       // Verificar si la productora existe
+        if ($films) {
+            return $this->view->showDetails($films);
+        } else {
+            return $this->view->showError('No se encontró ninguna pelicula con esa productora ');
+        }
+    }
+    
     
     
     

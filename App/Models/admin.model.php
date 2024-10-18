@@ -21,9 +21,13 @@ class AdminModel {
         return $films;
     }
 
-    public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras) {
-        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora) VALUES (?, ?, ?, ?, ?, ?)');
-        $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras]);
+    public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $image = null ) {
+        $pathImg = null;
+        if ($imagen)
+            $pathImg = $this->uploadImage($imagen);
+
+        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?,0)');
+        $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras,$image]);
 
         // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
 
@@ -37,10 +41,14 @@ class AdminModel {
         $query->execute([$id_peliculas]);
     }
 
-    public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras) {
+    public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras, $image = null) {
+        $pathImg = null;
+        if ($image)
+            $pathImg = $this->uploadImage($image);
+
         // Actualizo los datos de la película en la base de datos
-        $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ? WHERE id_peliculas = ?');
-        $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $id_peliculas]);
+        $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ?, imagen_pelicula WHERE id_peliculas = ?');
+        $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $id_peliculas, $image]);
     }
     
 
@@ -68,9 +76,13 @@ class AdminModel {
 
         return $producer;
     }
-    public function insertProducer($name_producer, $year_foundation, $founders, $country_origin){
-        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen) VALUES (?,?,?,?)');
-        $query->execute([$name_producer, $year_foundation, $founders, $country_origin]);
+    public function insertProducer($name_producer, $year_foundation, $founders, $country_origin, $image = null){
+        $pathImg = null;
+        if ($image)
+            $pathImg = $this->uploadImage($image);
+
+        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen, imagen_productora) VALUES (?,?,?,?,0)');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$image]);
         $id_producer = $this->db->lastInsertId();
 
         return $id_producer;
@@ -90,11 +102,21 @@ class AdminModel {
         }
 
     }
-    public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id){
-        $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ? WHERE id_productora = ?');
-        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$id]);
+    public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id,$image = null){
+        $pathImg = null;
+        if ($image)
+            $pathImg = $this->uploadImage($image);
+
+        $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ? , imagen_productora = 0 WHERE id_productora = ?');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$id,$image]);
     }
-    
+    private function uploadImage($image){
+        $target = 'img/task/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
+    }
+ 
+
     
 
 }

@@ -62,7 +62,7 @@ switch ($params[0]) {
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
     
-    case 'productor':
+    case 'productora':
         $controller = new producerController();
         $controller->showProducers();
         break;
@@ -83,6 +83,10 @@ switch ($params[0]) {
     case 'login':
         $controller = new AuthController();
         $controller->login();
+        break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
         break;
     case 'agregarProductora':
         sessionAuthMiddleware($res);
@@ -111,6 +115,10 @@ switch ($params[0]) {
         } else {
             echo "ID de productora inválido o no proporcionado.";
         }
+        break;
+    case 'verDetalle':
+        $controller = new producerController();
+        $controller->seeDetail($params[1]);
         break;
     default:
         echo "404 Page Not Found";

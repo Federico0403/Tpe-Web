@@ -23,5 +23,10 @@ class producerModel {
 
         return $producer;
     }
+    public function getFilmsFromAProducers($id){
+        $query = $this->db->prepare('SELECT * FROM peliculas WHERE id_productora = ?');
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 

@@ -38,11 +38,16 @@ class AuthController {
             $_SESSION['email'] = $userFromDB->email;
     
             // Redirijo al home
-            header('Location: ' . BASE_URL . 'productor');
+            header('Location: ' . BASE_URL . 'productora');
         } else {
             return $this->view->showError('credenciales incorrectas');
         }
         
+    }
+
+    public function logout(){
+        session_start();
+        session_destroy();
     }
 
     
