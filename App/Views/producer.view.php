@@ -3,6 +3,10 @@
 
     public $user = null;
 
+    public function __construct($user) {
+        $this->user = $user;
+    }
+
     public function showProducers($producers) {
 
         require 'Templates/Producers/home_producers.phtml';
