@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2024 a las 22:55:31
+-- Tiempo de generación: 19-10-2024 a las 15:35:53
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -93,7 +93,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `password`) VALUES
-(1, 'usuario@gmail.com', 'contraseña');
+(1, 'usuario@gmail.com', '$2y$10$Psf9MsKXoMCnN9pzAZF4eu8Clqm4jUYP9fYJbXJaPpzXRz2Yqt1g.'),
+(3, 'webadmin@gmail.com', '$2y$10$1Hss2VmTtwNZzC8o/ByDOO44KBG7scaKV99a8Wwu/V36gTb1ZSlvy');
 
 --
 -- Índices para tablas volcadas
@@ -139,7 +140,7 @@ ALTER TABLE `productoras`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
