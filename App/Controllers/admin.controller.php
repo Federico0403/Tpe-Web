@@ -70,7 +70,8 @@ class AdminController {
         $id_productoras = $_POST['id_productoras']; 
     
         // Insento la pelicula
-        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $_FILES['image_film']['type']);
+        $id_peliculas = $this->model->insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $_FILES['image_film']);
+
     
         // Verificar si la inserción fue exitosa
         if ($id_peliculas) {

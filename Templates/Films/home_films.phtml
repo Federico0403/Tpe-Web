@@ -5,9 +5,9 @@
         <?php foreach($films as $film): ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="film-image" style="height: 200px; background-color: #f0f0f0; border: 1px solid #ddd;">
-                        <img src="<?= htmlspecialchars($film->imagen_pelicula) ?>" alt="<?= htmlspecialchars($film->Nombre_pelicula) ?>" class="card-img-top" style="height: 100%; object-fit: cover;">
-                    </div>
+                <div class="film-image" style="height: 200px; background-color: #f0f0f0; border: 10px solid #ddd;">
+                    <img src="<?= htmlspecialchars($film->imagen_pelicula) ?>" alt="<?= htmlspecialchars($film->Nombre_pelicula) ?>" class="card-img-top" style="height: 100%; object-fit: cover;">
+                </div>
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="pelicula/<?= $film->id_peliculas ?>" class="text-decoration-none"><?= htmlspecialchars($film->Nombre_pelicula) ?></a>

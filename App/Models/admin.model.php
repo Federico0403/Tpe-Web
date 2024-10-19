@@ -21,21 +21,21 @@ class AdminModel {
         return $films;
     }
 
-    public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $image = null ) {
+    public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $image = null) {
         $pathImg = null;
-        if ($image)
-            $pathImg = $this->uploadImage($image);
-            
-
-            $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?, ?)');
-            $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras, $pathImg]);
-
-            
-
-        // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
-
+        
+        // Verificar si se ha subido una imagen
+        if ($image) {
+            $pathImg = $this->uploadImage($image); // Llama a la función uploadImage
+        }
+    
+        // Inserta la película en la base de datos
+        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras, $pathImg]);
+    
+        // Obtiene el ID de la última película insertada
         $id_peliculas = $this->db->lastInsertId();
-
+    
         return $id_peliculas;
     }
 
@@ -119,11 +119,27 @@ class AdminModel {
             $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $image, $id]);
             
     }
-    private function uploadImage($image){
-        $target = 'img/task/' . uniqid() . '.jpg';
-        move_uploaded_file($image, $target);
-        return $target;
+    private function uploadImage($image) {
+        // Define la ruta de destino para la imagen
+        $targetDir = 'img/task/';
+    
+        // Verifica si la carpeta existe, si no, intenta crearla
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true); // Crea la carpeta con permisos
+        }
+    
+        // Genera el nombre de archivo
+        $targetFile = $targetDir . uniqid() . '.jpg';
+        
+        // Intenta mover el archivo subido
+        if (move_uploaded_file($image['tmp_name'], $targetFile)) {
+            return $targetFile; // Retorna la ruta de la imagen
+        } else {
+            throw new Exception('Error al mover el archivo subido.');
+        }
     }
+    
+    
  
 
     
