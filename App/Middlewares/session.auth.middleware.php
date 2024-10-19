@@ -5,9 +5,8 @@
             $res->user = new stdClass();
             $res->user->id_usuario = $_SESSION['id_usuario'];
             $res->user->email = $_SESSION['email'];
-        } else {
-            header('Location: ' . BASE_URL . 'showLogin'); // Redirigir si no está logueado
-            exit(); // Terminar el script después de la redirección
+
+            return;
         }
     }
     

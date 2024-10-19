@@ -5,7 +5,9 @@ require_once './App/Views/film.view.php';
 require_once './App/Models/producer.model.php';
 require_once './App/Views/producer.view.php';
 require_once './App/Views/adminView.php';
-
+require_once './App/Models/admin.model.php';
+require_once './App/Views/producer.view.php';
+require_once './App/Views/adminView.php';
 
 
 class AdminController {
@@ -56,7 +58,8 @@ class AdminController {
         }
         if(empty($_FILES['image_film']['type'] )) {
             return $this->view->showError('hubo un error con la imagen');
-                }
+        }
+        
 
         // Obtengo los datos del formulario
         $name_film = $_POST['name_film'];
@@ -123,7 +126,9 @@ class AdminController {
             }
             if(empty($_FILES['image_film']['type'] )) {
                 return $this->view->showError('hubo un error con la imagen');
-                    }
+            }
+    
+            
     
             // Obtengo los datos del formulario
             $name_film = $_POST['name_film'];
