@@ -67,7 +67,7 @@ switch ($params[0]) {
         break;
     case 'verProductora':
         sessionAuthMiddleware($res);
-        $controller = new producerController();
+        $controller = new producerController($res);
         $controller->seeProducer($params[1]);
         break;
     case 'showLogin':
