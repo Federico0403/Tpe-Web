@@ -133,6 +133,7 @@ class AdminModel {
     }
     
     
+    
     private function uploadImage($image) {
         // Define la ruta de destino para la imagen
         $targetDir = 'img/task/';

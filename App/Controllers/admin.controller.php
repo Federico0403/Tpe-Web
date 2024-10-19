@@ -211,7 +211,6 @@ class AdminController {
 
 
     public function modifyProducers($id) {
-        // Si la solicitud es POST, significa que el formulario fue enviado y es necesario procesar los datos
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validación de los campos del formulario
             if (empty($_POST['input_name_producer']) || empty($_POST['input_year_foundation']) ||
@@ -224,10 +223,10 @@ class AdminController {
             $founders = $_POST['founders'];
             $country_origin = $_POST['country_origin'];
     
-            // Si no hay imagen en la carga, se pasará `null`, para no modificar la imagen existente
-            $image = $_FILES['image_producer'] ?? null;
+            // Verifica si se subió una nueva imagen
+            $image = $_FILES['image_producer'] ?? null; // Asegúrate de usar el nombre correcto aquí
     
-            // Llamo al modelo para modificar el productor
+            // Llama al modelo para modificar el productor
             $this->model->modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id, $image);
     
             header('Location: ' . BASE_URL . 'productora');
@@ -242,6 +241,7 @@ class AdminController {
             }
         }
     }
+    
     
 }
     
