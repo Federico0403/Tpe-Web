@@ -1,6 +1,11 @@
 Grupo 140- Plataforma de peliculas
-Federico Poupeau Crego, Gmail: Poupeau04@gmail.com
-Agostina Laffitte, Gmail: agoslaffitte17@gmail.com
+Federico Poupeau Crego, Gmail: Poupeau04@gmail.com (A).
+Agostina Laffitte, Gmail: agoslaffitte17@gmail.com (B).
+
+Como desplegar el sitio:
+Importar la Base de datos llamada netflix.
+usuarios: webadmin@gmail.com
+contraseña: admin
 
 ![Tablas](https://github.com/user-attachments/assets/fc977af2-d74f-4db0-92db-8af87c748519)
 
