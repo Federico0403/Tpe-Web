@@ -27,8 +27,10 @@ class AdminModel {
             $pathImg = $this->uploadImage($image);
             
 
-        $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?,0)');
-        $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras,$image]);
+            $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras, $pathImg]);
+
+            
 
         // QUIZA DA ERROR PORQUE EN MI DB LA ID ES id_peliculas, CHEQUEAR UNA VEZ EN FUNCION
 
@@ -48,8 +50,9 @@ class AdminModel {
             $pathImg = $this->uploadImage($image);
 
         // Actualizo los datos de la película en la base de datos
-        $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ?, imagen_pelicula WHERE id_peliculas = ?');
-        $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $id_peliculas, $image]);
+        $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ?, imagen_pelicula = ? WHERE id_peliculas = ?');
+    $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $image, $id_peliculas]);
+
     }
     
 
@@ -82,11 +85,15 @@ class AdminModel {
         if ($image)
             $pathImg = $this->uploadImage($image);
 
-        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora,año_fundacion,fundador_es, pais_origen, imagen_productora) VALUES (?,?,?,?,0)');
-        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$image]);
-        $id_producer = $this->db->lastInsertId();
+            $query = $this->db->prepare('INSERT INTO productoras(nombre_productora, año_fundacion, fundador_es, pais_origen, imagen_productora) VALUES (?, ?, ?, ?, ?)');
 
-        return $id_producer;
+            // Ejecutar la consulta con los valores proporcionados
+            $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $pathImg]);
+        
+            // Obtener el ID del último registro insertado
+            $id_producer = $this->db->lastInsertId();
+        
+            return $id_producer;
     } 
     public function deleteProducer($id){
         try {
@@ -108,8 +115,9 @@ class AdminModel {
         if ($image)
             $pathImg = $this->uploadImage($image);
 
-        $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ? , imagen_productora = 0 WHERE id_productora = ?');
-        $query->execute([$name_producer, $year_foundation, $founders, $country_origin,$id,$image]);
+            $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ?, imagen_productora = ? WHERE id_productora = ?');
+            $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $image, $id]);
+            
     }
     private function uploadImage($image){
         $target = 'img/task/' . uniqid() . '.jpg';
