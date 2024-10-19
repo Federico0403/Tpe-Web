@@ -34,7 +34,7 @@ class AuthController {
         if ($userFromDB && password_verify($password, $userFromDB->password)) {
             // Guardo en la sesión el ID del usuario
             session_start();
-            $_SESSION['id_usuario'] = $userFromDB->id;
+            $_SESSION['id_usuario'] = $userFromDB->id_usuario;
             $_SESSION['email'] = $userFromDB->email;
     
             // Redirijo al home

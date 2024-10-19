@@ -6,6 +6,7 @@ require_once './App/Controllers/film.controller.php';
 require_once './App/Controllers/producer.controller.php';
 require_once './App/Controllers/auth.controller.php';
 require_once './App/Controllers/admin.controller.php';
+require_once './App/Middlewares/verify.auth.middleware.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -25,6 +26,7 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'inicio':
+        sessionAuthMiddleware($res);
         $controller = new FilmsController($res);
         $controller->showHome();
         break;
@@ -58,18 +60,21 @@ switch ($params[0]) {
         break;
    // Nuevo caso para mostrar detalles de la película
     case 'pelicula':
+        sessionAuthMiddleware($res);
         $controller = new FilmsController($res);
         $controller->showFilmDetails($params[1]); // Llamamos al nuevo método
         break;
     
     case 'productora':
-        $controller = new producerController();
+        sessionAuthMiddleware($res);
+        $controller = new producerController($res);
         $controller->showProducers();
         break;
 
     case 'verProductora':
+        sessionAuthMiddleware($res);
         if (isset($params[1]) && is_numeric($params[1])) {
-            $controller = new producerController();
+            $controller = new producerController($res);
             $controller->seeProducer($params[1]);
         } else {
             echo "ID de productora inválido.";
@@ -90,6 +95,7 @@ switch ($params[0]) {
         break;
     case 'agregarProductora':
         sessionAuthMiddleware($res);
+        var_dump($res);
         verifyAuthMiddleware($res); 
         $controller = new AdminController($res);
         $controller->addProducer();
@@ -117,7 +123,7 @@ switch ($params[0]) {
         }
         break;
     case 'verDetalle':
-        $controller = new producerController();
+        $controller = new producerController($res);
         $controller->seeDetail($params[1]);
         break;
     default:

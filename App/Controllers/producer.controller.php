@@ -7,11 +7,11 @@ require_once './App/Views/film.view.php';
     private $view;
 
     // Constructor 
-    public function __construct() {
+    public function __construct($res) {
         // Instancio 
         $this->model = new producerModel();
         // Instancio 
-        $this->view = new producerView();
+        $this->view = new producerView($res->user);
     }
     public function showProducers() {
 

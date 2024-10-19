@@ -5,7 +5,9 @@ require_once './App/Views/film.view.php';
 require_once './App/Models/producer.model.php';
 require_once './App/Views/producer.view.php';
 require_once './App/Views/adminView.php';
-
+require_once './App/Models/admin.model.php';
+require_once './App/Views/producer.view.php';
+require_once './App/Views/adminView.php';
 
 
 class AdminController {
