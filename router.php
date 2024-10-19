@@ -107,6 +107,7 @@ switch ($params[0]) {
         $controller->modifyProducers($params[1]);
         break;
     case 'verDetalle':
+        sessionAuthMiddleware($res);
         $controller = new producerController($res);
         $controller->seeDetail($params[1]);
         break;
