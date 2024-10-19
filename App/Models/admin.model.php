@@ -23,8 +23,9 @@ class AdminModel {
 
     public function insertFilm($name_film, $date, $director, $genre, $language, $id_productoras, $image = null ) {
         $pathImg = null;
-        if ($imagen)
-            $pathImg = $this->uploadImage($imagen);
+        if ($image)
+            $pathImg = $this->uploadImage($image);
+            
 
         $query = $this->db->prepare('INSERT INTO peliculas (Nombre_pelicula, Lanzamiento, director, Idioma, genero, id_productora, imagen_pelicula) VALUES (?, ?, ?, ?, ?, ?,0)');
         $query->execute([$name_film, $date, $director, $language, $genre, $id_productoras,$image]);

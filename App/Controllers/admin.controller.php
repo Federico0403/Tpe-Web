@@ -58,7 +58,8 @@ class AdminController {
         }
         if(empty($_FILES['image_film']['type'] )) {
             return $this->view->showError('hubo un error con la imagen');
-                }
+        }
+        
 
         // Obtengo los datos del formulario
         $name_film = $_POST['name_film'];
@@ -125,7 +126,9 @@ class AdminController {
             }
             if(empty($_FILES['image_film']['type'] )) {
                 return $this->view->showError('hubo un error con la imagen');
-                    }
+            }
+    
+            
     
             // Obtengo los datos del formulario
             $name_film = $_POST['name_film'];
