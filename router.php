@@ -95,7 +95,6 @@ switch ($params[0]) {
         break;
     case 'agregarProductora':
         sessionAuthMiddleware($res);
-        var_dump($res);
         verifyAuthMiddleware($res); 
         $controller = new AdminController($res);
         $controller->addProducer();

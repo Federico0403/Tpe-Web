@@ -22,24 +22,29 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="<?=BASE_URL ?>inicio" class="nav-link px-2 link-secondary">Inicio</a></li>
-            <li><a href="<?=BASE_URL ?>agregar" class="nav-link px-2">Agregar pelicula</a></li>
-            <li><a href="<?=BASE_URL ?>productora" class="nav-link px-2">Productoras</a></li>
-            <li><a href="<?=BASE_URL ?>agregarProductora" class="nav-link px-2"> Agregar Productoras</a></li>
+            
+            <!-- muestro solo si esta logueado -->
+            <?php if ($this->user): ?>
+                    <li><a href="<?= BASE_URL ?>agregar" class="nav-link px-2">Agregar película</a></li>
+                    <li><a href="<?= BASE_URL ?>agregarProductora" class="nav-link px-2">Agregar productoras</a></li>
+            <?php endif; ?>
+
+            <li><a href="<?= BASE_URL ?>productora" class="nav-link px-2">Productoras</a></li>
         </ul>
-<!-- AQUI SE MUESTRA EL USUARIO LOGUEADO -->
+        <!-- AQUI SE MUESTRA EL USUARIO LOGUEADO -->
                 <?php if($this->user): ?>
-                    <span class="navbar-text"><?= $this->user->email ?></span>
+                    <span class="navbar-text me-3"><?= $this->user->email ?></span>
                 <?php endif; ?>
                 <?php if($this->user): ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="logout">Salir</a>
-                            </li>
-                        <?php endif; ?>
+                    <a href="<?= BASE_URL ?>logout" class="btn btn-outline-danger">Salir</a>
+                <?php endif; ?>
 
-            <div class="col-md-3 text-end">
-                <a href="<?= BASE_URL ?>showLogin" class="btn btn-outline-primary me-2">Login</a>
-                <a href="<?= BASE_URL ?>logout" class="btn btn-outline-primary me-2">Sing up</a>
-            </div>
+                <?php if (!$this->user): ?>
+    <!-- Mostrar botones de Login y Sign up solo si el usuario NO está logueado -->
+    <a href="<?= BASE_URL ?>showLogin" class="btn btn-outline-primary me-2">Login</a>
+    <a href="<?= BASE_URL ?>signup" class="btn btn-outline-secondary me-2">Sign up</a>
+<?php endif; ?>
+
         </header>
     </div>
 
