@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 15:35:53
+-- Tiempo de generación: 19-10-2024 a las 17:14:33
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -43,12 +43,11 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`id_peliculas`, `Nombre_pelicula`, `Lanzamiento`, `director`, `Idioma`, `genero`, `id_productora`, `imagen_pelicula`) VALUES
-(1, 'Buscando a Nemo', '2003-05-30', 'Andrew Stanton', 'Ingles', 'Animacion infantil', 0, ''),
-(2, 'One day', '2011-08-08', 'Lone Scherfig', 'Ingles', 'cine romantico ', 1, ''),
-(7, 'Duro de matar 1', '1988-12-15', 'John MCTiernan', 'Ingles', 'Accion', 3, ''),
-(9, 'Scary Movie', '2000-10-26', 'Kennen ivory Wayans', 'Ingles', 'Comedia', 4, ''),
-(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5, ''),
-(18, 'jfjwej', '0002-02-22', 'cknknckn', 'Ingles', 'comedia', 4, '');
+(1, 'Buscando a Nemo', '2003-05-30', 'Andrew Stanton', 'Ingles', 'Animacion infantil', 3, 'img/task/6713cb01e8cb2.jpg'),
+(2, 'One day', '2011-08-08', 'Lone Scherfig', 'Ingles', 'cine romantico ', 4, 'img/task/6713cb110fc19.jpg'),
+(7, 'Duro de matar 1', '1988-12-15', 'John MCTiernan', 'Ingles', 'Accion', 1, 'img/task/6713cb22874a9.jpg'),
+(9, 'Scary Movie', '2000-10-26', 'Kennen ivory Wayans', 'Ingles', 'Comedia', 5, 'img/task/6713cb310d050.jpg'),
+(17, 'harry potter', '2001-11-29', 'Chris Columbus', 'Ingles', 'Fantasia', 5, 'img/task/6713cb40dd2da.jpg');
 
 -- --------------------------------------------------------
 
@@ -70,11 +69,11 @@ CREATE TABLE `productoras` (
 --
 
 INSERT INTO `productoras` (`id_productora`, `nombre_productora`, `año_fundacion`, `fundador_es`, `pais_origen`, `imagen_productora`) VALUES
-(0, 'pixar', '1986-02-03', ' Steve Jobs, John Lasseter, George Lucas, Edwin Catmull, Alvy Ray Smith, Alexandre Schure', 'Estados Unidos', ''),
-(1, 'juan pedro', '0000-00-00', 'hihihihihi', 'rusia', ''),
-(3, '20th century studios', '1935-05-31', 'Joseph M. Schenck, Darryl F. Zanuck', 'Estados Unidos', ''),
-(4, 'MiraMax', '1979-02-13', 'Harvey Weinstein, Bob Weinstein', 'Estados Unidos', ''),
-(5, 'Warner Bros', '1923-04-04', ' Sam Warner, Jack Warner, Harry Warner, Albert Warner', 'Estados Unidos', '');
+(0, 'pixar', '1986-02-03', ' Steve Jobs, John Lasseter, George Lucas, Edwin Catmull, Alvy Ray Smith, Alexandre Schure', 'Estados Unidos', 'img/task/6713cc86a3e06.jpg'),
+(1, 'juan pedro', '0000-00-00', 'hihihihihi', 'rusia', 'img/task/6713cc92c05a2.jpg'),
+(3, '20th century studios', '1935-05-31', 'Joseph M. Schenck, Darryl F. Zanuck', 'Estados Unidos', 'img/task/6713cc9d33bad.jpg'),
+(4, 'MiraMax', '1979-02-13', 'Harvey Weinstein, Bob Weinstein', 'Estados Unidos', 'img/task/6713cca6a7f1c.jpg'),
+(5, 'Warner Bros', '1923-04-04', ' Sam Warner, Jack Warner, Harry Warner, Albert Warner', 'Estados Unidos', 'img/task/6713ccafeb47d.jpg');
 
 -- --------------------------------------------------------
 
