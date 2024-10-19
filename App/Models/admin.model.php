@@ -46,14 +46,21 @@ class AdminModel {
 
     public function updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras, $image = null) {
         $pathImg = null;
-        if ($image)
+    
+        // Verificar si hay una nueva imagen
+        if (isset($image['tmp_name']) && !empty($image['tmp_name'])) {
             $pathImg = $this->uploadImage($image);
-
+        } else {
+            // Aquí puedes establecer el valor actual de la imagen de la base de datos si deseas mantenerlo
+            $film = $this->getFilmById($id_peliculas);
+            $pathImg = $film->imagen_pelicula; // Asegúrate de que el nombre de la propiedad coincida
+        }
+    
         // Actualizo los datos de la película en la base de datos
         $query = $this->db->prepare('UPDATE peliculas SET Nombre_pelicula = ?, Lanzamiento = ?, director = ?, genero = ?, Idioma = ?, id_productora = ?, imagen_pelicula = ? WHERE id_peliculas = ?');
-    $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $image, $id_peliculas]);
-
+        $query->execute([$name_film, $date, $director, $genre, $language, $id_productoras, $pathImg, $id_peliculas]);
     }
+    
     
 
     public function getFilmById($id_peliculas) {

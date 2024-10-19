@@ -140,7 +140,7 @@ class AdminController {
             $id_productoras = $_POST['id_productora']; 
     
             // Llamo al modelo para actualizar los datos
-            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras, $_FILES['image_film']['type']);
+            $this->model->updateFilm($id_peliculas, $name_film, $date, $director, $genre, $language, $id_productoras, $_FILES['image_film']);
     
             // Redirijo al home
             header('Location: ' . BASE_URL);
