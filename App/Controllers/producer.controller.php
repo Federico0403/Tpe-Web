@@ -28,6 +28,7 @@ require_once './App/Views/film.view.php';
         } else {
             return $this->view->showError('No se encontró ninguna productora con el ID ');
         }
+       
     }
     public function seeDetail($id) {
 
