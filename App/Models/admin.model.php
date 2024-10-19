@@ -87,21 +87,21 @@ class AdminModel {
 
         return $producer;
     }
-    public function insertProducer($name_producer, $year_foundation, $founders, $country_origin, $image = null){
+    public function insertProducer($name_producer, $year_foundation, $founders, $country_origin, $image = null) {
         $pathImg = null;
-        if ($image)
-            $pathImg = $this->uploadImage($image);
-
-            $query = $this->db->prepare('INSERT INTO productoras(nombre_productora, año_fundacion, fundador_es, pais_origen, imagen_productora) VALUES (?, ?, ?, ?, ?)');
-
-            // Ejecutar la consulta con los valores proporcionados
-            $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $pathImg]);
-        
-            // Obtener el ID del último registro insertado
-            $id_producer = $this->db->lastInsertId();
-        
-            return $id_producer;
-    } 
+        if ($image) {
+            $pathImg = $this->uploadImage($image); // Esto debe funcionar correctamente
+        } else {
+            return null; // O lanza una excepción si no hay imagen
+        }
+    
+        $query = $this->db->prepare('INSERT INTO productoras(nombre_productora, año_fundacion, fundador_es, pais_origen, imagen_productora) VALUES (?, ?, ?, ?, ?)');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $pathImg]);
+    
+        $id_producer = $this->db->lastInsertId();
+        return $id_producer;
+    }
+    
     public function deleteProducer($id){
         try {
             $query = $this->db->prepare("DELETE FROM productoras WHERE id_productora = ?");
@@ -117,15 +117,22 @@ class AdminModel {
         }
 
     }
-    public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id,$image = null){
-        $pathImg = null;
-        if ($image)
-            $pathImg = $this->uploadImage($image);
-
-            $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ?, imagen_productora = ? WHERE id_productora = ?');
-            $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $image, $id]);
-            
+    public function modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id, $image = null) {
+        // Obtener el productor existente para conservar la imagen actual si no se proporciona una nueva
+        $producer = $this->getProducer($id);
+        $pathImg = $producer->imagen_productora; // Obtén la imagen actual
+    
+        // Verificar si hay una nueva imagen
+        if ($image && isset($image['tmp_name']) && !empty($image['tmp_name'])) {
+            $pathImg = $this->uploadImage($image); // Sube la nueva imagen y actualiza la ruta
+        }
+    
+        // Actualizar los datos de la productora en la base de datos
+        $query = $this->db->prepare('UPDATE productoras SET nombre_productora = ?, año_fundacion = ?, fundador_es = ?, pais_origen = ?, imagen_productora = ? WHERE id_productora = ?');
+        $query->execute([$name_producer, $year_foundation, $founders, $country_origin, $pathImg, $id]);
     }
+    
+    
     private function uploadImage($image) {
         // Define la ruta de destino para la imagen
         $targetDir = 'img/task/';

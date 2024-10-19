@@ -156,7 +156,7 @@ class AdminController {
     }
 
 
-    public function addedProducer(){
+    public function addedProducer() {
         if (empty($_POST['input_name_producer'])) {
             return $this->view->showError('Falta completar el nombre de la productora');
         }
@@ -169,25 +169,26 @@ class AdminController {
         if (empty($_POST['country_origin'])) {
             return $this->view->showError('Falta completar el pais de origen');
         }
-        if(empty($_FILES['image_producers']['type'] )) {
-            return $this->view->showError('hubo un error con la imagen');
-                }
-       
+        if (empty($_FILES['image_producers']['type'])) {
+            return $this->view->showError('Hubo un error con la imagen');
+        }
+    
         $name_producer = $_POST['input_name_producer'];
         $year_foundation = $_POST['input_year_foundation'];
-        $founders= $_POST['founders'];
+        $founders = $_POST['founders'];
         $country_origin = $_POST['country_origin'];
-
-        $id_producer = $this->model->insertProducer($name_producer, $year_foundation, $founders, $country_origin,$_FILES['image_producers']['type']);
-
+    
+        // Asegúrate de que aquí se use 'image_producers' y no 'image_film'
+        $id_producer = $this->model->insertProducer($name_producer, $year_foundation, $founders, $country_origin, $_FILES['image_producers']);
+    
         if ($id_producer) {
             header('Location: ' . BASE_URL . 'agregar');  
             exit(); 
         } else {
-           
             return $this->view->showError('Error: no se pudo agregar la productora.');
         }
     }
+    
 
 
     public function deleteProducer($id){
@@ -209,41 +210,40 @@ class AdminController {
     }
 
 
-    public function modifyProducers($id){
+    public function modifyProducers($id) {
         // Si la solicitud es POST, significa que el formulario fue enviado y es necesario procesar los datos
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+            // Validación de los campos del formulario
             if (empty($_POST['input_name_producer']) || empty($_POST['input_year_foundation']) ||
-                empty($_POST['founders']) || empty($_POST['country_origin']) ||empty($_FILES['image_producers']['type'] )) {
-               
+                empty($_POST['founders']) || empty($_POST['country_origin'])) {
                 return $this->view->showError('Todos los campos son requeridos.');
             }
     
-          
             $name_producer = $_POST['input_name_producer'];
             $year_foundation = $_POST['input_year_foundation'];
             $founders = $_POST['founders'];
             $country_origin = $_POST['country_origin'];
     
-            
-            $this->model->modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id,$_FILES['image_producers']['type'] );
+            // Si no hay imagen en la carga, se pasará `null`, para no modificar la imagen existente
+            $image = $_FILES['image_producer'] ?? null;
     
-            
+            // Llamo al modelo para modificar el productor
+            $this->model->modifyProducer($name_producer, $year_foundation, $founders, $country_origin, $id, $image);
+    
             header('Location: ' . BASE_URL . 'productora');
             exit();
         } else {
-           
-            $producer = $this->model->getProducer($id);  
+            // Si no es POST, es porque se quiere ver el formulario de edición
+            $producer = $this->model->getProducer($id);
             if ($producer) {
-                
                 $this->view->seeForm($producer);
             } else {
-               
                 $this->view->showError('La productora no fue encontrada.');
             }
         }
-}
-    
-    
+    }
     
 }
+    
+    
+    
