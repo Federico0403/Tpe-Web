@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 17:14:33
+-- Tiempo de generación: 20-10-2024 a las 16:22:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -70,7 +70,7 @@ CREATE TABLE `productoras` (
 
 INSERT INTO `productoras` (`id_productora`, `nombre_productora`, `año_fundacion`, `fundador_es`, `pais_origen`, `imagen_productora`) VALUES
 (0, 'pixar', '1986-02-03', ' Steve Jobs, John Lasseter, George Lucas, Edwin Catmull, Alvy Ray Smith, Alexandre Schure', 'Estados Unidos', 'img/task/6713cc86a3e06.jpg'),
-(1, 'juan pedro', '0000-00-00', 'hihihihihi', 'rusia', 'img/task/6713cc92c05a2.jpg'),
+(1, 'juan pedroo', '0000-00-00', 'hihihihihi', 'rusia', 'img/task/67150fbdadca0.jpg'),
 (3, '20th century studios', '1935-05-31', 'Joseph M. Schenck, Darryl F. Zanuck', 'Estados Unidos', 'img/task/6713cc9d33bad.jpg'),
 (4, 'MiraMax', '1979-02-13', 'Harvey Weinstein, Bob Weinstein', 'Estados Unidos', 'img/task/6713cca6a7f1c.jpg'),
 (5, 'Warner Bros', '1923-04-04', ' Sam Warner, Jack Warner, Harry Warner, Albert Warner', 'Estados Unidos', 'img/task/6713ccafeb47d.jpg');
