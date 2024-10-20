@@ -1,12 +1,17 @@
 <?php
 
+require_once './config/config.php';
+
 class AdminModel {
     private $db;
 
-    public function __construct(){
-        // Abro la base de datos.
-        $this->db = new PDO('mysql:host=localhost;dbname=netflix;charset=utf8', 'root', '');
+    public function __construct() {
+        $this->db = new PDO(
+                              "mysql:host=" . MYSQL_HOST . ";dbname=" . MYSQL_DB . ";charset=utf8", 
+                               MYSQL_USER, MYSQL_PASS
+        );
     }
+    
     
     public function getFilms() {
         // Ejecuto consulta sobre las peliculas.

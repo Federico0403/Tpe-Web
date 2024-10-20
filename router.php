@@ -7,6 +7,7 @@ require_once './App/Controllers/producer.controller.php';
 require_once './App/Controllers/auth.controller.php';
 require_once './App/Controllers/admin.controller.php';
 require_once './App/Middlewares/verify.auth.middleware.php';
+require_once './config/config.php';
 
 // base_url para direcciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
